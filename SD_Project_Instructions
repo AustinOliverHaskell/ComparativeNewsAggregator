@@ -1,0 +1,36 @@
+The final project for this course will require that everyone work on a large project and work in a group to build a significant piece of software.
+
+Therefore, the main requirement is that every student must work in a group. I have proposed some groups below. You are free to pick the significant piece of software you'd like to build or if you'd like I can assign one to the group. I encourage you to choose a problem that interests you. This is the type of project that looks good on a resume and can be discussed in length during a job/internship interview.
+
+What is a significant piece of software? This is hard to say. I require that your group get approval for your software idea from me initially. We will spend some time early on discussing project ideas. The project must be large enough to keep you busy for the rest of the semester but not so big that you cannot possibly finish it in the time we have left.
+
+Your first task as a group will be to create a process. There are two things that I require from your process:
+ - Your group must create a written specification of the software that you will build
+ - - The entire group must contribute to writing it
+ - - The entire group must peer review it (like we did with our code reviews)
+- Your group must use version control for the code that you write
+ - - You must make it publicly available in a GitHub repository
+
+Next, your group will choose additional elements to your process that you think are important and write them down. I am expecting that you actually use the process that the group chooses! Groups that don't have much process tend to: 
+- not know how far along they are
+- not know who is doing what
+- not know what to do next
+
+These are some optional elements that your group can add to your process:
+- Use cases as a tool to gather requirements. The collection of the use cases can form your specification document. 
+- Design documents. Sequence diagrams and a class diagram to plan out which classes the team will need to create and how they will interact. 
+- Some kind of tool to manage communication in the group. At a minimum this might include email and a shared google calendar although there are more complex group communication tools- slack, trello, and basecamp are some tools that may be useful.
+- Automated tests using something like JUnit.
+- Test Driven Development where you let the tests drive the development of the code.
+- Code review of your code. You might choose to do formal code reviews or informal reviews before accepting pull requests.
+- Pair programming.
+- Continuous integration using Travis or Jenkins to run all tests on every commit to the version control system.
+- Create other documentation like a user manual, test plan, etc.
+
+Next, you will choose a project. You might choose to do a console based C++ program, a full fledged web app, a mobile app, a browser plugin, or some combination of these. Then you will apply your process and create the software. Finally, you will demonstrate the working software at the end of the semester to the entire class. In the presentation explain your group's process and the pros and cons of applying it in the group.
+
+I will also ask each person to write a short report describing their responsibilities, the challenges they faced, the solutions they came up with and the tools that they personally used in building the software. I suggest you keep some sort of journal so you can remember exactly what your contributions were. Every member must describe the role of every other member in their report. I am requiring this so that if there is one person who does make an honest contribution they will not earn as many points as someone who put forth a significant effort. These reports will not be seen by your fellow group members so you should be honest.
+
+As you might imagine completing this project will require a significant amount of work from every member of the team outside of class. It is your responsibility to make sure you meet as a group and that everyone is pulling their weight. Communication is one of the biggest problems you will face when working in a team, it is up to you as a group to deal with these problems. I will do my best to help if a group asks for it.
+
+I am expecting everyone to show up for the remainder of the semester to meet with your group members and to work on the project. Remember, this is the only time you can be certain your group members do not have anything else scheduled. You group must make some progress between each class period. I will be joining group meetings to check on progress.
