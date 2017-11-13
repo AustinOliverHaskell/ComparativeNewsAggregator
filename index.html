@@ -4,10 +4,24 @@
 	<head>
 		<title>Page Title</title>
 	</head>
+
 	<body>
 
-		<h1>This is a Heading</h1>
-		<p>This is a paragraph.</p>
+		<h1 id="heading">This is a Heading</h1>
+		<button onclick="myFunction()">Try it</button>
 
 	</body>
+
+	<script>
+		function myFunction(){
+			var front = ["Bone", "Meat", "Lump", "Tire", "Face", "Crash", "Jack", "Blood", "Dirty"];
+			var back = ["Bone", "Meat", "Lump", "Tire", "Face", "Crash", "Jack", "Blood", "Dirty"];
+			var f1 = front[Math.floor(Math.random()*front.length)];
+			var b1 = back[Math.floor(Math.random()*back.length)];
+			var name = f1.concat(b1);
+
+			document.getElementById("heading").innerHTML = name;
+		}
+
+	</script>
 </html>
