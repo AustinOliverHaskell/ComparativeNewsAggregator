@@ -1,7 +1,7 @@
 "Articles" : {
 				"0xfwd2392" : {"URL" : "http://cnn.com", "Title" : "Trump eats Chinese food", 
 					   "Text": " ", "Author": "John Doe", "Leaning": " ", 
-					   "Rating": {"UP": 0, "DOWN": 0} }
+					   "Rating": {"UP": 0, "DOWN": 0} },
 					   
 				"23dn92ned" : {"URL" : "http://huffingtonpost.com", 
 					   "Title" : "Trump disrespects Chinese Leader", "Text": " ", 
