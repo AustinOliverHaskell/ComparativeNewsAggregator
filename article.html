@@ -14,32 +14,33 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
     crossorigin="anonymous"></script>
+
 <!-- End Bootstrap stuff -->
 <html>
 
 <head>
-<!-- Firebase stuff -->
-<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
-<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-database.js"></script>
-<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-firestore.js"></script>
-<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-messaging.js"></script>
-<script>
-  // Initialize Firebase
-  var config = 
-  {
-    apiKey: "AIzaSyDqs1V4sQgKsXXe071909_aO_SLy5P7bpE",
-    authDomain: "newsapp-5d5a8.firebaseapp.com",
-    databaseURL: "https://newsapp-5d5a8.firebaseio.com",
-    projectId: "newsapp-5d5a8",
-    storageBucket: "newsapp-5d5a8.appspot.com",
-    messagingSenderId: "536892297743"
-  };
-  
-  firebase.initializeApp(config);
-  </script>
-<!-- End Firebase stuff -->
+    <!-- Firebase stuff -->
+    <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-messaging.js"></script>
+    <script>
+        // Initialize Firebase
+        var config =
+            {
+                apiKey: "AIzaSyDqs1V4sQgKsXXe071909_aO_SLy5P7bpE",
+                authDomain: "newsapp-5d5a8.firebaseapp.com",
+                databaseURL: "https://newsapp-5d5a8.firebaseio.com",
+                projectId: "newsapp-5d5a8",
+                storageBucket: "newsapp-5d5a8.appspot.com",
+                messagingSenderId: "536892297743"
+            };
+
+        firebase.initializeApp(config);
+    </script>
+    <!-- End Firebase stuff -->
 </head>
 
 <body>
@@ -50,10 +51,7 @@
                 <a class="navbar-brand" href="#">Newsboy</a>
             </div>
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">Page 1</a></li>
-                <li><a href="#">Page 2</a></li>
-                <li><a href="#">Page 3</a></li>
+                <li><a href="home.html">Home</a></li>
             </ul>
         </div>
     </nav>
@@ -61,15 +59,43 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6">
-                <div class="well">Basic Well</div>
+                <div class="well">Article clicked on main screen</div>
                 <script>
-                    // See if firebase connected OK
-                    var ref = firebase.database().ref("Articles/");
-                    console.log(ref);
+                    // Query DB for this specific JSON
+                    var ref = firebase.database().ref("Keywords/Trump");
+
+                    // Get the value(s) associated with the Trump key
+                    ref.once("value")
+                        .then(function (snapshot) {
+                            var articleName = snapshot.child("article").val(); // {first:"Ada",last:"Lovelace"}
+                            console.log(articleName);
+                        });
                 </script>
+                <div>
+                    <a class="btn btn-info btn-md">
+                    <span class="glyphicon glyphicon-thumbs-up"></span>
+                </a>
+                    <a class="btn btn-danger btn-md">
+                    <span class="glyphicon glyphicon-thumbs-down"></span>
+                </a>
+                    <div id="id_origSlideCtnr">
+                        <input type="range" min="1" max="100" value="50" class="slider" id="id_origLeaing">
+                    </div>
+                </div>
             </div>
             <div class="col-sm-6">
-                <div class="well">Basic Well</div>
+                <div class="well">Random article fetched for comparison</div>
+                <div>
+                    <a class="btn btn-info btn-md">
+                    <span class="glyphicon glyphicon-thumbs-up"></span>
+                </a>
+                    <a class="btn btn-danger btn-md">
+                    <span class="glyphicon glyphicon-thumbs-down"></span>
+                </a>
+                    <div id="id_refSlideCtnr">
+                        <input type="range" min="1" max="100" value="50" class="slider" id="id_refLeaning">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -77,3 +103,11 @@
 </body>
 
 </html>
+
+<script>
+                    // TODO
+                    // Make this not happen until the page is loaded
+                    var valueFromHome = localStorage.getItem("Hello");
+//alert(valueFromHome);
+
+</script>
