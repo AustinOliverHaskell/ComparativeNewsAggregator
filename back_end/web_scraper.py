@@ -29,6 +29,8 @@ class WebScraper():
 			for article in paper.articles:
 			
 				self.articles.append(article.url)
+
+        print("There were ", len(self.articles), " articles found.")
 				
 	
 	def _getDataInformatics(self):
