@@ -1,41 +1,107 @@
 "Articles" : {
-				"0xfwd2392" : {"URL" : "http://cnn.com", "Title" : "Trump eats Chinese food", 
-					   "Text": " ", "Author": "John Doe", "Leaning": " ",
-					   “keywords”: [“trump”, “chinese”, “china”, “food”, “travel”, “foreign”], 
-					   "Rating": {"UP": 0, "DOWN": 0} },
-					   
-				"23dn92ned" : {"URL" : "http://huffingtonpost.com", 
-					   "Title" : "Trump disrespects Chinese Leader", "Text": " ", 
-					   "Author": "John Doe", "Leaning": " ",
-					   “keywords”: [“trump”, “chinese”, “leader”, “food”, “travel”, “foreign”], 
-					   "Rating": {"UP": 0, "DOWN": 0} },
-					   
-				"eweld0302" : {"URL" : "http://fox.com", 
-					   "Title" : "New Tesla Roadster goes 0-60 in 1.9 s", "Text": " ", 
-					   "Author": "John Doe", "Leaning": " ",
-					   “keywords”: [“tesla”, “roadster”, “fast”, “electric”, “motors”, “new”], 
-					   "Rating": {"UP": 0, "DOWN": 0} },
-					   
-				"32o30dm30" : {"URL" : "http://breitbart.com", 
-					   "Title" : "Tesla unveils it's new semi truck line", "Text": " ", 
-					   "Author": "John Doe", "Leaning": " ",
-					   “keywords”: [“tesla”, “semi”, “truck”, “fast”, “tech”, “musk”], 
-					   "Rating": {"UP": 0, "DOWN": 0} },
-					   
-					   			   
+    "0xfwd2392":{
+        "URL":"http://cnn.com",
+        "Title":"Trump eats Chinese food",
+        "Text":" ",
+        "Author":"John Doe",
+        "Leaning":" ",
+        "keywords":[
+            "trump",
+            "chinese",
+            "china",
+            "food",
+            "travel",
+            "foreign"
+        ],
+        "Rating":{
+            "UP":0,
+            "DOWN":0
+        }
+    },
+    "23dn92ned":{
+        "URL":"http://huffingtonpost.com",
+        "Title":"Trump disrespects Chinese Leader",
+        "Text":" ",
+        "Author":"John Doe",
+        "Leaning":" ",
+        "keywords":[
+            "trump",
+            "chinese",
+            "leader",
+            "food",
+            "travel",
+            "foreign"
+        ],
+        "Rating":{
+            "UP":0,
+            "DOWN":0
+        }
+    },
+    "eweld0302":{
+        "URL":"http://fox.com",
+        "Title":"New Tesla Roadster goes 0-60 in 1.9 s",
+        "Text":" ",
+        "Author":"John Doe",
+        "Leaning":" ",
+        "keywords":[
+            "tesla",
+            "roadster",
+            "fast",
+            "electric",
+            "motors",
+            "new"
+        ],
+        "Rating":{
+            "UP":0,
+            "DOWN":0
+        }
+    },
+    "32o30dm30":{
+        "URL":"http://breitbart.com",
+        "Title":"Tesla unveils it's new semi truck line",
+        "Text":" ",
+        "Author":"John Doe",
+        "Leaning":" ",
+        "keywords":[
+            "tesla",
+            "semi",
+            "truck",
+            "fast",
+            "tech",
+            "musk"
+        ],
+        "Rating":{
+            "UP":0,
+            "DOWN":0
+        }
+    }
 },
 			
 "Keywords" : {
-				"trump": { "references" : 
-								{"article_1": "0xfwd2392", "article_2": "23dn92ned" }},
-								
-				"tesla": {"references" : 
-								{"article_1": "eweld0302", "article_2": "32o30dm30" }},
+    "trump":{
+        "references":{
+            "article_1":"0xfwd2392",
+            "article_2":"23dn92ned"
+        }
+    },
+    "tesla":{
+        "references":{
+            "article_1":"eweld0302",
+            "article_2":"32o30dm30"
+        }
+    }
 },
 
-"Comparisons" : { "comparison_1" : ["0xfwd2392", "23dn92ned"], 
-				  "comparison_2" : ["eweld0302", "32o30dm30"], 
-}					   
+"Comparisons" : {
+    "comparison_1":[
+        "0xfwd2392",
+        "23dn92ned"
+    ],
+    "comparison_2":[
+        "eweld0302",
+        "32o30dm30"
+    ]
+}				   
 					
 					   
 					  
