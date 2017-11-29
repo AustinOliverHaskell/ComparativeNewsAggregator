@@ -31,6 +31,7 @@
 									"keywords": ["tesla", "electric", "semi", "elon", "fast", "car"],
 									"rating": {"up": 0, "down": 0}
 			
+<<<<<<< HEAD
 					}	   			   
 	},
 				
@@ -49,5 +50,33 @@
 		
 }			   
 				
+=======
+"Keywords" : {
+    "trump":{
+        "references":{
+            "article_1":"0xfwd2392",
+            "article_2":"23dn92ned"
+        }
+    },
+    "tesla":{
+        "references":{
+            "article_1":"eweld0302",
+            "article_2":"32o30dm30"
+        }
+    }
+},
+
+"Comparisons" : {
+    "comparison_1":[
+        "0xfwd2392",
+        "23dn92ned"
+    ],
+    "comparison_2":[
+        "eweld0302",
+        "32o30dm30"
+    ]
+}				   
+					
+>>>>>>> parent of ee42559... Merge remote-tracking branch 'origin/toms-branch' into toms-branch
 					   
 					  
