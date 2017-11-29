@@ -67,16 +67,16 @@
                     // Get the value(s) associated with the Trump key
                     ref.once("value")
                         .then(function (snapshot) {
-                            var articleName = snapshot.child("article").val(); // {first:"Ada",last:"Lovelace"}
+                            var articleName = snapshot.child("article").val();
                             console.log(articleName);
                         });
                 </script>
                 <div>
                     <a class="btn btn-info btn-md">
-                    <span class="glyphicon glyphicon-thumbs-up"></span>
+                    <span class="glyphicon glyphicon-thumbs-up" onclick="updateThumbsUp('aniceKey')"></span>
                 </a>
                     <a class="btn btn-danger btn-md">
-                    <span class="glyphicon glyphicon-thumbs-down"></span>
+                    <span class="glyphicon glyphicon-thumbs-down" onclick="updateThumbsDown('aniceKey2')"></span>
                 </a>
                     <div id="id_origSlideCtnr">
                         <input type="range" min="1" max="100" value="50" class="slider" id="id_origLeaing">
@@ -87,10 +87,10 @@
                 <div class="well">Random article fetched for comparison</div>
                 <div>
                     <a class="btn btn-info btn-md">
-                    <span class="glyphicon glyphicon-thumbs-up"></span>
+                    <span class="glyphicon glyphicon-thumbs-up" onclick="updateThumbsUp('aniceKey')"></span>
                 </a>
                     <a class="btn btn-danger btn-md">
-                    <span class="glyphicon glyphicon-thumbs-down"></span>
+                    <span class="glyphicon glyphicon-thumbs-down" onclick="updateThumbsDown('aniceKey2')"></span>
                 </a>
                     <div id="id_refSlideCtnr">
                         <input type="range" min="1" max="100" value="50" class="slider" id="id_refLeaning">
@@ -105,9 +105,47 @@
 </html>
 
 <script>
-                    // TODO
-                    // Make this not happen until the page is loaded
-                    var valueFromHome = localStorage.getItem("Hello");
+// TODO
+// Make this not happen until the page is loaded
+var valueFromHome = localStorage.getItem("Hello");
+
+// TODO
+// Change this in the two article clicks
+function updateThumbsUp(articleKey)
+{
+    console.log("clicked thumbs up with " + articleKey);
+
+    var numOfThumbsUp;
+    var ref = firebase.database().ref("Articles/aa2/Rating");
+            ref.once("value")
+                .then(function (snapshot) {
+                     numOfThumbsUp = snapshot.child("ThumbsUp").val();
+                     console.log("Number of thumbs up: " + numOfThumbsUp);
+    });
+
+        
+    var ratingRef = firebase.database().ref('Articles/aa2/Rating');
+    ratingRef.set({ThumbsUp : numOfThumbsUp});
+
+    //var thumbsUpRef = ratingRef.child('ThumbsUp');
+
+    //ratingRef.child('ThumbsUp').set(numOfThumbsUp);
+
+    //console.log("Stringified variable: " + parseInt(numOfThumbsUp));
+
+   // thumbsUpRef.set(parseInt(numOfThumbsUp));
+
+}
+
+function updateThumbsDown(articleKey)
+{
+    console.log("clicked thumbs down with " + articleKey);
+}
+
+function getValueOfPath(key)
+{
+
+}
 //alert(valueFromHome);
 
 </script>
