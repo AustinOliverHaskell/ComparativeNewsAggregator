@@ -59,27 +59,39 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6">
-                <div class="well">Article clicked on main screen</div>
+                <div id="article" class="well">Article clicked on main screen</div>
                 <script>
                     // Query DB for this specific JSON
                     var ref = firebase.database().ref("Keywords/Trump");
+                    var refTwo;
 
                     // Get the value(s) associated with the Trump key
                     ref.once("value")
                         .then(function (snapshot) {
                             var articleName = snapshot.child("article").val(); // {first:"Ada",last:"Lovelace"}
+                            var f1 = "Articles/";
+                            var f2 = f1.concat(articleName);
+                            refTwo = firebase.database().ref(f2); // {first:"Ada",last:"Lovelace"}
                             console.log(articleName);
                         });
+
+                    refTwo.once("value")
+                        .then(function (snapshot) {
+                            var articleText = snapshot.child("Text").val(); // {first:"Ada",last:"Lovelace"}
+                            document.getElementById("article").innerHTML = articleText;
+                        });
+
+
                 </script>
                 <div>
-                    <a class="btn btn-info btn-md">
+                    <a class="btn btn-success btn-md">
                     <span class="glyphicon glyphicon-thumbs-up"></span>
                 </a>
                     <a class="btn btn-danger btn-md">
                     <span class="glyphicon glyphicon-thumbs-down"></span>
                 </a>
                     <div id="id_origSlideCtnr">
-                        <input type="range" min="1" max="100" value="50" class="slider" id="id_origLeaing">
+                        <input type="range" min="1" max="101" value="50" step="25" class="slider" id="id_origLeaing">
                     </div>
                 </div>
             </div>
