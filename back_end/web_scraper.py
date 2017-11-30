@@ -1,5 +1,6 @@
 import newspaper
 from newspaper import Article
+from make_comparison import Comparison
 
 class WebScraper():
 
@@ -11,36 +12,43 @@ class WebScraper():
 						 "http://www.reuters.com", "http://occupydemocrats.com/"]
 		
 		# Holders for article URLs and entries for firebase database
+		self.urls = []
 		self.articles = []
 		self.entries = {}
 		
 		# Sequence to get articles and scrape information
-		self._getArticles()
+		self._getURLs()
 		self._getDataInformatics()
+		self.compare = Comparison(self.articles)
+
 		
 		
-	def _getArticles(self):
+		
+	def _getURLs(self):
 	
 		# Find all articles on each website and add URLs to list
 		for website in self.websites:
 			
-			paper = newspaper.build(website)
+			paper = newspaper.build(website, 'en')
 			
 			for article in paper.articles:
 			
-				self.articles.append(article.url)
+				self.urls.append(article.url)
 				
-		print("There were ", len(self.articles), " articles found.")
+		print("There were ", len(self.urls), " urls found.")
 				
 	
 	def _getDataInformatics(self):
 	
 		# For each article URL, scape web and formulate database response
-		for id, article in enumerate(self.articles, 1):
+		for id, url in enumerate(self.urls, 1):
 		
-			self._formulateDatabaseResponse(id, article)
+			if id == 3:
+				break
+
+			self._formulateDatabaseResponse(id, url)
 			
-			print('Formulating responses... %f percent complete' % (id * 100 / len(self.articles)))
+			print('Formulating responses... %f percent complete' % (id * 100 / len(self.urls)))
 			
 			
 	def _formulateDatabaseResponse(self, id, article):
@@ -52,14 +60,9 @@ class WebScraper():
 		news_article.download()
 		news_article.parse()
 		news_article.nlp()
-	
-		# Create JSON structure for database entry
-		self.entries["article_%d" % id] = {
-		
-			"URL" : article, "Title": news_article.title,
-			"Text": news_article.text, "Author": news_article.authors,
-			"Leaning": "", "Rating": {"UP": 0, "DOWN": 0},
-		}
+
+		self.articles.append(news_article)
+
 
 
 if __name__ == "__main__":
