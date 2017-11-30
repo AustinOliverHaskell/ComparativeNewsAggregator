@@ -5,3 +5,5 @@ class Comparison():
 
         for article in self.articles:
             print(article.title)
+
+            

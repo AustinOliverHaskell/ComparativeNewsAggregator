@@ -29,7 +29,7 @@ class WebScraper():
 		# Find all articles on each website and add URLs to list
 		for website in self.websites:
 			
-			paper = newspaper.build(website, 'en')
+			paper = newspaper.build(website)
 			
 			for article in paper.articles:
 			
@@ -42,9 +42,6 @@ class WebScraper():
 	
 		# For each article URL, scape web and formulate database response
 		for id, url in enumerate(self.urls, 1):
-		
-			if id == 3:
-				break
 
 			self._formulateDatabaseResponse(id, url)
 			
