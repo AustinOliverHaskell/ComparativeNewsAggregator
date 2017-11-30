@@ -59,18 +59,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6">
-                <div class="well">Article clicked on main screen</div>
-                <script>
-                    // Query DB for this specific JSON
-                    var ref = firebase.database().ref("Keywords/Trump");
-
-                    // Get the value(s) associated with the Trump key
-                    ref.once("value")
-                        .then(function (snapshot) {
-                            var articleName = snapshot.child("article").val();
-                            //console.log(articleName);
-                        });
-                </script>
+                <div class="well"><span id="id_mainArticleText"></span></div>
                 <div>
                     <a class="btn btn-info btn-md">
                     <span class="glyphicon glyphicon-thumbs-up" onclick="updateThumbsUp('aniceKey')"></span>
@@ -85,7 +74,7 @@
                 </div>
             </div>
             <div class="col-sm-6">
-                <div class="well">Random article fetched for comparison</div>
+                <div class="well"><span id="id_compArticleText"></span></div>
                 <div>
                     <a class="btn btn-info btn-md">
                     <span class="glyphicon glyphicon-thumbs-up" onclick="updateThumbsUp('aniceKey')"></span>
@@ -116,6 +105,11 @@ var comparisonSlider = document.getElementById("id_refLeaning");
 
 // TODO
 // Condense these two functions into one
+$(document).ready(function()
+{
+    setValueFromKeysWithID("Articles/aa2", "Text", "id_mainArticleText");
+});
+
 originalSlider.oninput = function() 
 {
     var textReplacement;
@@ -172,6 +166,27 @@ comparisonSlider.oninput = function()
     $("#id_refLeaningOutput").text(textReplacement);
 }
 
+function getValuesFromKeys(parentPath, childPath) 
+{
+    var defer = $.Deferred();
+
+    var ref = firebase.database().ref(parentPath);
+
+    ref.once('value', function(snapshot) 
+    {
+        var value = snapshot.child(childPath).val();
+
+        defer.resolve(value);
+    });
+
+    return defer.promise();
+}
+
+function setValueFromKeysWithID(parentPath, childPath, domID)
+{
+    getValuesFromKeys(parentPath, childPath).then(function(valueRetrieved) { $("#" + domID).html(valueRetrieved); });
+}
+
 // TODO
 // Change this in the two article clicks
 function updateThumbsUp(articleKey)
@@ -194,30 +209,6 @@ function incrementSpecificPath(parentPath, childName)
         var specificRef = firebase.database().ref(parentPath + "/" + childName);
         specificRef.set(val);
     });
-    /*
-    ref.once("value").then(function(snapshot) 
-    {
-        var numOfThumbsUp = snapshot.child("Thumbs Up").val() + 1;
-        console.log("Number of thumbs up: " + numOfThumbsUp);
-
-        var ratingRef = firebase.database().ref('Articles/aa2/Rating/Thumbs Up');
-        ratingRef.set(numOfThumbsUp);
-    });
-    */
-
-    /* EXAMPLE
-    var ref = firebase.database().ref("Articles/aa2/Rating");
-    ref.once("value").then(function (snapshot) 
-    {
-        var numOfThumbsUp = snapshot.child("Thumbs Up").val() + 1;
-        console.log("Number of thumbs up: " + numOfThumbsUp);
-
-        //var ratingRef = firebase.database().ref('Articles/aa2/Rating');
-        //ratingRef.set({"Thumbs Up" : numOfThumbsUp});
-        var ratingRef = firebase.database().ref('Articles/aa2/Rating/Thumbs Up');
-        ratingRef.set(numOfThumbsUp);
-    });
-    */
 }
 
 </script>
