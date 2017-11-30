@@ -68,7 +68,7 @@
                     ref.once("value")
                         .then(function (snapshot) {
                             var articleName = snapshot.child("article").val();
-                            console.log(articleName);
+                            //console.log(articleName);
                         });
                 </script>
                 <div>
@@ -79,7 +79,8 @@
                     <span class="glyphicon glyphicon-thumbs-down" onclick="updateThumbsDown('aniceKey2')"></span>
                 </a>
                     <div id="id_origSlideCtnr">
-                        <input type="range" min="1" max="100" value="50" class="slider" id="id_origLeaing">
+                        <input type="range" min="1" max="5" value="3" class="slider" id="id_origLeaning">
+                        <span id="id_origLeaningOutput">Center</span>
                     </div>
                 </div>
             </div>
@@ -93,7 +94,8 @@
                     <span class="glyphicon glyphicon-thumbs-down" onclick="updateThumbsDown('aniceKey2')"></span>
                 </a>
                     <div id="id_refSlideCtnr">
-                        <input type="range" min="1" max="100" value="50" class="slider" id="id_refLeaning">
+                        <input type="range" min="1" max="5" value="3" class="slider" id="id_refLeaning">
+                        <span id="id_refLeaningOutput">Center</span>
                     </div>
                 </div>
             </div>
@@ -109,43 +111,113 @@
 // Make this not happen until the page is loaded
 var valueFromHome = localStorage.getItem("Hello");
 
+var originalSlider = document.getElementById("id_origLeaning");
+var comparisonSlider = document.getElementById("id_refLeaning");
+
+// TODO
+// Condense these two functions into one
+originalSlider.oninput = function() 
+{
+    var textReplacement;
+
+    if (this.value == 1)
+    {
+        textReplacement = "Left";
+    }
+    else if (this.value == 2)
+    {
+        textReplacement = "Center Left";
+    }
+    else if (this.value == 3)
+    {
+        textReplacement = "Center";
+    }
+    else if (this.value == 4)
+    {
+        textReplacement = "Center Right";
+    }
+    else
+    {
+        textReplacement = "Right";
+    }
+
+    $("#id_origLeaningOutput").text(textReplacement);
+}
+
+comparisonSlider.oninput = function() 
+{
+    var textReplacement;
+
+    if (this.value == 1)
+    {
+        textReplacement = "Left";
+    }
+    else if (this.value == 2)
+    {
+        textReplacement = "Center Left";
+    }
+    else if (this.value == 3)
+    {
+        textReplacement = "Center";
+    }
+    else if (this.value == 4)
+    {
+        textReplacement = "Center Right";
+    }
+    else
+    {
+        textReplacement = "Right";
+    }
+
+    $("#id_refLeaningOutput").text(textReplacement);
+}
+
 // TODO
 // Change this in the two article clicks
 function updateThumbsUp(articleKey)
 {
-    console.log("clicked thumbs up with " + articleKey);
-
-    var numOfThumbsUp;
-    var ref = firebase.database().ref("Articles/aa2/Rating");
-            ref.once("value")
-                .then(function (snapshot) {
-                     numOfThumbsUp = snapshot.child("ThumbsUp").val();
-                     console.log("Number of thumbs up: " + numOfThumbsUp);
-    });
-
-        
-    var ratingRef = firebase.database().ref('Articles/aa2/Rating');
-    ratingRef.set({ThumbsUp : numOfThumbsUp});
-
-    //var thumbsUpRef = ratingRef.child('ThumbsUp');
-
-    //ratingRef.child('ThumbsUp').set(numOfThumbsUp);
-
-    //console.log("Stringified variable: " + parseInt(numOfThumbsUp));
-
-   // thumbsUpRef.set(parseInt(numOfThumbsUp));
-
+    incrementSpecificPath("Articles/aa2/Rating", "Thumbs Up");
 }
 
 function updateThumbsDown(articleKey)
 {
-    console.log("clicked thumbs down with " + articleKey);
+    incrementSpecificPath("Articles/aa2/Rating", "Thumbs Down");
 }
 
-function getValueOfPath(key)
+function incrementSpecificPath(parentPath, childName)
 {
+    var ref = firebase.database().ref(parentPath);
 
+    ref.once("value").then(function(snapshot) 
+    {
+        var val = snapshot.child(childName).val() + 1;
+        var specificRef = firebase.database().ref(parentPath + "/" + childName);
+        specificRef.set(val);
+    });
+    /*
+    ref.once("value").then(function(snapshot) 
+    {
+        var numOfThumbsUp = snapshot.child("Thumbs Up").val() + 1;
+        console.log("Number of thumbs up: " + numOfThumbsUp);
+
+        var ratingRef = firebase.database().ref('Articles/aa2/Rating/Thumbs Up');
+        ratingRef.set(numOfThumbsUp);
+    });
+    */
+
+    /* EXAMPLE
+    var ref = firebase.database().ref("Articles/aa2/Rating");
+    ref.once("value").then(function (snapshot) 
+    {
+        var numOfThumbsUp = snapshot.child("Thumbs Up").val() + 1;
+        console.log("Number of thumbs up: " + numOfThumbsUp);
+
+        //var ratingRef = firebase.database().ref('Articles/aa2/Rating');
+        //ratingRef.set({"Thumbs Up" : numOfThumbsUp});
+        var ratingRef = firebase.database().ref('Articles/aa2/Rating/Thumbs Up');
+        ratingRef.set(numOfThumbsUp);
+    });
+    */
 }
-//alert(valueFromHome);
 
 </script>
