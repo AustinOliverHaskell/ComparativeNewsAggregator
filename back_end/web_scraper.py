@@ -55,7 +55,11 @@ class WebScraper():
 		
 		# Parse article for web scraping information
 		news_article.download()
-		news_article.parse()
+		try:
+			news_article.parse()
+		except Exception:
+			print("Exception Caught")
+			return
 		news_article.nlp()
 
 		self.articles.append(news_article)
