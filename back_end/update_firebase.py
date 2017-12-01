@@ -3,10 +3,10 @@ from firebase_admin import db
 
 class UpdateFirebase():
 
-	def __init__(self, entry):
+	def __init__(self, entries):
 	
-		# Entry to be posted on firebase
-		self.entry = entry
+		# Entry is a list of lists
+		self.entries = entries
 		
 		# Check entry to see if it fits criteria
 		self._checkParams()
@@ -15,38 +15,39 @@ class UpdateFirebase():
 		self.database = firebase.FirebaseApplication("https://newsapp-5d5a8.firebaseio.com/")
 		
 		# Push entry to database and update keywords
-		self._pushEntry()
+		self._pushEntries()
 		
 	def _checkParams(self):
 	
-		if type(self.entry) != dict:
+		if type(self.entries) != list:
 			
-			raise ValueError("The entry must be a dictionary in order to post to Firebase")
+			raise ValueError("The entry must be a list of lists containing two comparison articles in order to post to Firebase")
+			
+		if self.entries.size() == 0:
+			
+			raise ValueError("The list of lists is empty. Nothing can be posted to the Firebase")
+			
 		
-	def _pushEntry(self):
+	def _pushEntries(self):
+		
+		for comparison in self.entries:
+		
+			# Hash key that references articles
+			hash_keys = []
+		
+			for article in comparison:
+			
+				# Update keywords
+				self._updateKeywords(article["Keywords"])
+				
+				# Append reference id to list for each comparison
+				hash_keys.append(self.reference_id)
+				
+			# Update comparisons in article JSON and Comparison JSON
+			self.updateComparisons(hash_keys)
+							
 	
-		# Check to see if entry is already in database
-		for entry in self.database.get("Articles", None).values():
-		
-			# If the entry is found in the database then notify user
-			if self.entry == entry:
-				print("Entry was already in database. Skipping entry")
-				
-			# If not found the database then post the article, reference id, and update keywords
-			else:
-				
-				self.reference_id = self.database.post("Articles", self.entry, 
-													   {'print': 'pretty'}, 
-													   {'X_FANCY_HEADER': 'VERY FANCY'})
-													   
-				print('The reference id is: ', self.reference_id["name"])
-				
-				self._updateKeywords()
-		
-	def _updateKeywords(self):
-	
-		# Get Keywords of Articles
-		self.keywords = self.entry["keywords"]
+	def _updateKeywords(self, keywords):
 		
 		# For each keyword in article,
 		for keyword in self.keywords:
@@ -65,4 +66,10 @@ class UpdateFirebase():
 			
 				# If keyword is not in database, add it and list with single reference id
 				self.database.path('Keywords/%s/' % keyword, [self.reference_id]
+				
+	def _updateComparisons(self):
+	
+		
+		
+		
 					
