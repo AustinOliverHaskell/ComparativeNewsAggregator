@@ -17,6 +17,7 @@ class UpdateFirebase():
 		# Push entry to database and update keywords
 		self._pushEntries()
 		
+		
 	def _checkParams(self):
 	
 		if type(self.entries) != list:
@@ -32,44 +33,33 @@ class UpdateFirebase():
 		
 		for comparison in self.entries:
 		
-			# Hash key that references articles
-			hash_keys = []
+			# Holds two hash keys for articles in Firebase
+			comparison_hash_keys = []
 		
 			for article in comparison:
+				
+				# Post article to database
+				comparison_hash_keys.append(self.database.post("Articles", article, {'print': 'pretty'}, {'X_FANCY_HEADER': 'VERY FANCY'}))
+				
+			# Update the comparisons for each article
+			self._updateComparisons(comparison_hash_keys)
 			
-				# Update keywords
-				self._updateKeywords(article["Keywords"])
 				
-				# Append reference id to list for each comparison
-				hash_keys.append(self.reference_id)
-				
-			# Update comparisons in article JSON and Comparison JSON
-			self.updateComparisons(hash_keys)
-							
+	def _updateComparisons(self, comparison_hash_keys):
 	
-	def _updateKeywords(self, keywords):
-		
-		# For each keyword in article,
-		for keyword in self.keywords:
-		
-			# Check to see if keyword is in database
-			if keyword in self.database.get("Keywords", None).keys():
-				
-				# If it is, then append reference id for article in list for that keyword
-				list_articles_with_keyword = self.database.get("Articles/%s" % keyword, None)
-				list_articles_with_keyword.append(self.reference_id)
-				
-				# Patch keyword with new updated list
-				self.database.patch('/Keywords/%s/' % keyword, list_articles_with_keyword)
-				
-			else:
+		# Note comparison for each key	
+		comparison_id = self.database.post("Comparisons", comparison_hash_keys, {'print': 'pretty'}, {'X_FANCY_HEADER': 'VERY FANCY'})
 			
-				# If keyword is not in database, add it and list with single reference id
-				self.database.path('Keywords/%s/' % keyword, [self.reference_id]
-				
-	def _updateComparisons(self):
-	
+		for aritlce in comparison_hash_key:
 		
+			# Get and update comparison list for each article
+			article_id = self.database.get("Articles/%s/Comparisons" % article, None)
+			
+			# Update comparison list with new comparison id
+			article_id.append(comparison_id)
+			
+			# Update firebase with new comparison added to list
+			self.database.path("Articles/%s/Comparisons" % article, article_id)	
 		
 		
 					
