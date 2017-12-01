@@ -59,32 +59,52 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6">
-                <div class="well"><span id="id_mainArticleText"></span></div>
+                <div class="well">
+                    TITLE: <span id="id_mainArticleTitle"></span>
+                    <br> AUTHOR: <span id="id_mainArticleAuthor"></span>
+                    <br>
+                    <span>Users that liked this article: </span><span id="id_mainArticleRatingUp"></span>
+                    <span>Users that disliked this article: </span><span id="id_mainArticleRatingDown"></span>
+                    <br>
+                    <span id="id_mainArticleLeaning"></span>
+                    <br>
+                    <br>
+                    <span id="id_mainArticleText"></span>
+                </div>
                 <div>
-                    <a class="btn btn-info btn-md">
-                    <span class="glyphicon glyphicon-thumbs-up" onclick="updateThumbsUp('aniceKey')"></span>
-                </a>
-                    <a class="btn btn-danger btn-md">
-                    <span class="glyphicon glyphicon-thumbs-down" onclick="updateThumbsDown('aniceKey2')"></span>
-                </a>
+                    <button class="btn btn-info btn-md" onclick="updateThumbsUp('id_mainArticle')" id="id_mainArticleThumbsUp">
+                        <span class="glyphicon glyphicon-thumbs-up"></span>
+                    </button>
+                    <button class="btn btn-danger btn-md" onclick="updateThumbsDown('id_mainArticle')" id="id_mainArticleThumbsDown">
+                            <span class="glyphicon glyphicon-thumbs-down"></span></button>
                     <div id="id_origSlideCtnr">
                         <input type="range" min="1" max="5" value="3" class="slider" id="id_origLeaning">
-                        <span id="id_origLeaningOutput">Center</span>
+                        <span id="id_mainLeaningOutput">Center</span>
+                        <button type="button" class="btn btn-primary" id="id_mainArticleLeaningButton" onclick="click_updateLeaning('main')">Submit Leaning</button>
                     </div>
                 </div>
             </div>
             <div class="col-sm-6">
-                <div class="well"><span id="id_compArticleText"></span></div>
+                <div class="well">
+                    TITLE: <span id="id_compArticleTitle"></span>
+                    <br> AUTHOR: <span id="id_compArticleAuthor"></span>
+                    <br>
+                    <span>Users that liked this article: </span><span id="id_compArticleRatingUp"></span>
+                    <span>Users that disliked this article: </span><span id="id_compArticleRatingDown"></span>
+                    <br>
+                    <span id="id_compArticleLeaing"></span>
+                    <br>
+                    <br>
+                    <span id="id_compArticleText"></span></div>
                 <div>
-                    <a class="btn btn-info btn-md">
-                    <span class="glyphicon glyphicon-thumbs-up" onclick="updateThumbsUp('aniceKey')"></span>
-                </a>
-                    <a class="btn btn-danger btn-md">
-                    <span class="glyphicon glyphicon-thumbs-down" onclick="updateThumbsDown('aniceKey2')"></span>
-                </a>
+                    <button class="btn btn-info btn-md" onclick="updateThumbsUp('id_compArticle')" id="id_compArticleThumbsUp">
+                                <span class="glyphicon glyphicon-thumbs-up"></span></button>
+                    <button class="btn btn-danger btn-md" onclick="updateThumbsDown('id_compArticle')" id="id_compArticleThumbsDown">
+                                    <span class="glyphicon glyphicon-thumbs-down"></span></button>
                     <div id="id_refSlideCtnr">
                         <input type="range" min="1" max="5" value="3" class="slider" id="id_refLeaning">
-                        <span id="id_refLeaningOutput">Center</span>
+                        <span id="id_compLeaningOutput">Center</span>
+                        <button type="button" class="btn btn-primary" id="id_compArticleLeaningButton" onclick="click_updateLeaning('comp')">Submit Leaning</button>
                     </div>
                 </div>
             </div>
@@ -96,119 +116,132 @@
 </html>
 
 <script>
-// TODO
-// Make this not happen until the page is loaded
-var valueFromHome = localStorage.getItem("Hello");
+        var valueFromHome = localStorage.getItem("Hello");
 
-var originalSlider = document.getElementById("id_origLeaning");
-var comparisonSlider = document.getElementById("id_refLeaning");
+        // Perform these functions once the DOM has been loaded.
+        $(document).ready(function () {
+            setValueFromKeysWithID("Articles/aa2", "Title", "id_mainArticleTitle");
+            setValueFromKeysWithID("Articles/aa2", "Author", "id_mainArticleAuthor");
+            setValueFromKeysWithID("Articles/aa2", "Text", "id_mainArticleText");
 
-// TODO
-// Condense these two functions into one
-$(document).ready(function()
-{
-    setValueFromKeysWithID("Articles/aa2", "Text", "id_mainArticleText");
-});
+            setValueFromKeysWithID("Articles/aa2/Rating", "Thumbs Up", "id_mainArticleRatingUp");
+            setValueFromKeysWithID("Articles/aa2/Rating", "Thumbs Down", "id_mainArticleRatingDown");
+        });
 
-originalSlider.oninput = function() 
-{
-    var textReplacement;
+        // TODO
+        // Condense these two functions into one
 
-    if (this.value == 1)
-    {
-        textReplacement = "Left";
-    }
-    else if (this.value == 2)
-    {
-        textReplacement = "Center Left";
-    }
-    else if (this.value == 3)
-    {
-        textReplacement = "Center";
-    }
-    else if (this.value == 4)
-    {
-        textReplacement = "Center Right";
-    }
-    else
-    {
-        textReplacement = "Right";
-    }
+        var originalSlider = document.getElementById("id_origLeaning");
+        var comparisonSlider = document.getElementById("id_refLeaning");
 
-    $("#id_origLeaningOutput").text(textReplacement);
-}
+        originalSlider.oninput = function () {
+            var textReplacement;
 
-comparisonSlider.oninput = function() 
-{
-    var textReplacement;
+            if (this.value == 1) {
+                textReplacement = "Left";
+            }
+            else if (this.value == 2) {
+                textReplacement = "Center Left";
+            }
+            else if (this.value == 3) {
+                textReplacement = "Center";
+            }
+            else if (this.value == 4) {
+                textReplacement = "Center Right";
+            }
+            else {
+                textReplacement = "Right";
+            }
 
-    if (this.value == 1)
-    {
-        textReplacement = "Left";
-    }
-    else if (this.value == 2)
-    {
-        textReplacement = "Center Left";
-    }
-    else if (this.value == 3)
-    {
-        textReplacement = "Center";
-    }
-    else if (this.value == 4)
-    {
-        textReplacement = "Center Right";
-    }
-    else
-    {
-        textReplacement = "Right";
-    }
+            $("#id_mainLeaningOutput").text(textReplacement);
+        }
 
-    $("#id_refLeaningOutput").text(textReplacement);
-}
+        comparisonSlider.oninput = function () {
+            var textReplacement;
 
-function getValuesFromKeys(parentPath, childPath) 
-{
-    var defer = $.Deferred();
+            if (this.value == 1) {
+                textReplacement = "Left";
+            }
+            else if (this.value == 2) {
+                textReplacement = "Center Left";
+            }
+            else if (this.value == 3) {
+                textReplacement = "Center";
+            }
+            else if (this.value == 4) {
+                textReplacement = "Center Right";
+            }
+            else {
+                textReplacement = "Right";
+            }
 
-    var ref = firebase.database().ref(parentPath);
+            $("#id_compLeaningOutput").text(textReplacement);
+        }
 
-    ref.once('value', function(snapshot) 
-    {
-        var value = snapshot.child(childPath).val();
+        function getValuesFromKeys(parentPath, childPath) {
+            var defer = $.Deferred();
 
-        defer.resolve(value);
-    });
+            var ref = firebase.database().ref(parentPath);
 
-    return defer.promise();
-}
+            ref.once('value', function (snapshot) {
+                var value = snapshot.child(childPath).val();
 
-function setValueFromKeysWithID(parentPath, childPath, domID)
-{
-    getValuesFromKeys(parentPath, childPath).then(function(valueRetrieved) { $("#" + domID).html(valueRetrieved); });
-}
+                defer.resolve(value);
+            });
 
-// TODO
-// Change this in the two article clicks
-function updateThumbsUp(articleKey)
-{
-    incrementSpecificPath("Articles/aa2/Rating", "Thumbs Up");
-}
+            return defer.promise();
+        }
 
-function updateThumbsDown(articleKey)
-{
-    incrementSpecificPath("Articles/aa2/Rating", "Thumbs Down");
-}
+        function setValueFromKeysWithID(parentPath, childPath, domID) {
+            getValuesFromKeys(parentPath, childPath).then(function (valueRetrieved) { $("#" + domID).html(valueRetrieved); });
+        }
 
-function incrementSpecificPath(parentPath, childName)
-{
-    var ref = firebase.database().ref(parentPath);
+        // TODO
+        // Condense
+        // TODO
+        // Remove hard coded paths
+        function updateThumbsUp(buttonID) {
+            incrementSpecificPath("Articles/aa2/Rating", "Thumbs Up");
+            var button = "#" + buttonID + "ThumbsUp";
+            var accompanyButton = "#" + buttonID + "ThumbsDown";
+            disableButton(button);
+            disableButton(accompanyButton);
+        }
 
-    ref.once("value").then(function(snapshot) 
-    {
-        var val = snapshot.child(childName).val() + 1;
-        var specificRef = firebase.database().ref(parentPath + "/" + childName);
-        specificRef.set(val);
-    });
-}
+        function updateThumbsDown(buttonID) {
+            incrementSpecificPath("Articles/aa2/Rating", "Thumbs Down");
+            var button = "#" + buttonID + "ThumbsDown";
+            var accompanyButton = "#" + buttonID + "ThumbsUp";
+            disableButton(button);
+            disableButton(accompanyButton);
+        }
+
+        function disableButton(buttonID) {
+            $(buttonID).addClass('disabled'); // Disables visually
+            $(buttonID).prop('disabled', true); // Disables visually + functionally
+        }
+
+        function click_updateLeaning(buttonID) {
+            var stringReplace = "#id_" + buttonID + "LeaningOutput";
+            var leaningText = $(stringReplace).html();
+            incrementSpecificPath("Articles/aa2/Political Leaning", leaningText);
+            var button = "#id_" + buttonID + "ArticleLeaningButton";
+            disableButton(button);
+
+            // TODO
+            // Disable the slider
+            //var slider = "#id_refLeaning";
+            //disableButton(slider);
+        }
+
+        function incrementSpecificPath(parentPath, childName) {
+            var ref = firebase.database().ref(parentPath);
+
+            ref.once("value").then(function (snapshot) {
+                var val = snapshot.child(childName).val() + 1;
+                var specificRef = firebase.database().ref(parentPath + "/" + childName);
+                specificRef.set(val);
+            });
+        }
 
 </script>

@@ -69,4 +69,13 @@ function goToArticlePage()
     location.replace("article.html");
 }
 
+var value;
+
+console.log("The value starts as " + value);
+
+var aNewValue = function() { value = 5; console.log("The value is, inside the function, " + value);};
+aNewValue.apply();
+
+console.log("Now the value is " + value);
+
 </script>
