@@ -83,6 +83,13 @@
                         <button type="button" class="btn btn-primary" id="id_mainArticleLeaningButton" onclick="click_updateLeaning('main')">Submit Leaning</button>
                     </div>
                 </div>
+                <div>
+                    <div class="form-group">
+                        <label for="exampleTextarea">Example textarea</label>
+                        <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+                    </div>
+                    <button class="btn btn-primary">Submit Comment</button>
+                </div>
             </div>
             <div class="col-sm-6">
                 <div class="well">
@@ -107,6 +114,13 @@
                         <button type="button" class="btn btn-primary" id="id_compArticleLeaningButton" onclick="click_updateLeaning('comp')">Submit Leaning</button>
                     </div>
                 </div>
+                <div>
+                    <div class="form-group">
+                        <label for="exampleTextarea">Example textarea</label>
+                        <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+                    </div>
+                    <button class="btn btn-primary">Submit Comment</button>
+                </div>
             </div>
         </div>
     </div>
@@ -116,16 +130,23 @@
 </html>
 
 <script>
-        var valueFromHome = localStorage.getItem("Hello");
-
         // Perform these functions once the DOM has been loaded.
         $(document).ready(function () {
-            setValueFromKeysWithID("Articles/aa2", "Title", "id_mainArticleTitle");
-            setValueFromKeysWithID("Articles/aa2", "Author", "id_mainArticleAuthor");
-            setValueFromKeysWithID("Articles/aa2", "Text", "id_mainArticleText");
 
-            setValueFromKeysWithID("Articles/aa2/Rating", "Thumbs Up", "id_mainArticleRatingUp");
-            setValueFromKeysWithID("Articles/aa2/Rating", "Thumbs Down", "id_mainArticleRatingDown");
+            var mainArticlePath = localStorage.getItem("mainArticle");
+            var compArticlePath = localStorage.getItem("compArticle");
+
+            setValueFromKeysWithID(mainArticlePath, "Title", "id_mainArticleTitle");
+            setValueFromKeysWithID(mainArticlePath, "Author", "id_mainArticleAuthor");
+            setValueFromKeysWithID(mainArticlePath, "Text", "id_mainArticleText");
+            setValueFromKeysWithID(mainArticlePath + "Rating", "Thumbs Up", "id_mainArticleRatingUp");
+            setValueFromKeysWithID(mainArticlePath + "Rating", "Thumbs Down", "id_mainArticleRatingDown");
+
+            setValueFromKeysWithID(compArticlePath, "Title", "id_compArticleTitle");
+            setValueFromKeysWithID(compArticlePath, "Author", "id_compArticleAuthor");
+            setValueFromKeysWithID(compArticlePath, "Text", "id_compArticleText");
+            setValueFromKeysWithID(compArticlePath + "Rating", "Thumbs Up", "id_compArticleRatingUp");
+            setValueFromKeysWithID(compArticlePath + "Rating", "Thumbs Down", "id_compArticleRatingDown");
         });
 
         // TODO
