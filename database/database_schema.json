@@ -5,7 +5,7 @@
         "Text":" ",
         "Author":"John Doe",
         "Leaning":" ",
-        "keywords":[
+        "Keywords":[
             "trump",
             "chinese",
             "china",
@@ -16,7 +16,8 @@
         "Rating":{
             "UP":0,
             "DOWN":0
-        }
+        },
+        "Comparisons":["comparison_1"]
     },
     "23dn92ned":{
         "URL":"http://huffingtonpost.com",
@@ -24,7 +25,7 @@
         "Text":" ",
         "Author":"John Doe",
         "Leaning":" ",
-        "keywords":[
+        "Keywords":[
             "trump",
             "chinese",
             "leader",
@@ -35,7 +36,8 @@
         "Rating":{
             "UP":0,
             "DOWN":0
-        }
+        },
+        "Comparisons":["comparison_1"]
     },
     "eweld0302":{
         "URL":"http://fox.com",
@@ -43,7 +45,7 @@
         "Text":" ",
         "Author":"John Doe",
         "Leaning":" ",
-        "keywords":[
+        "Keywords":[
             "tesla",
             "roadster",
             "fast",
@@ -62,7 +64,7 @@
         "Text":" ",
         "Author":"John Doe",
         "Leaning":" ",
-        "keywords":[
+        "Keywords":[
             "tesla",
             "semi",
             "truck",
@@ -93,7 +95,7 @@
 },
 
 "Comparisons" : {
-    "comparison_1":[
+    "hashyhashhash":[
         "0xfwd2392",
         "23dn92ned"
     ],
