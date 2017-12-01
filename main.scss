@@ -1,0 +1,30 @@
+// I chose pallet 03 that I made online, its 
+// a pdf in the colors folder
+$black: rgba(25, 23, 22, 1);
+$white: rgba(255, 255, 255, 1);
+$grey: rgba(96, 91, 86, 1);
+$red: rgba(242, 149, 89, 1);
+$blue: rgba(141, 153, 174, 1);
+
+// To keep the color assignments seperate
+// from the colors themselfs
+$background: $white;
+$text:       $grey;
+$titleText:  $black;
+
+// Font pallete
+$titleFont: 'Vollkorn SC', serif;
+$bodyFont:  'Barlow Semi Condensed', sans-serif;
+
+body 
+{
+	background-color: $background;
+	color: $text;
+	font-family: $bodyFont;
+}
+
+.title
+{
+	color: $titleText;
+	font-family: $titleFont;
+}

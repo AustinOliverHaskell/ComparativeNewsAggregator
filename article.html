@@ -16,6 +16,9 @@
     crossorigin="anonymous"></script>
 
 <!-- End Bootstrap stuff -->
+
+        <link rel="STYLESHEET" type="text/css" href="main.css">
+
 <html>
 
 <head>
@@ -59,34 +62,38 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6">
+                <span id="id_mainArticleTitle" class="articleTitles"></span>
+                    <br> 
+                    by <span id="id_mainArticleAuthor"></span>
                 <div class="well">
-                    TITLE: <span id="id_mainArticleTitle"></span>
-                    <br> AUTHOR: <span id="id_mainArticleAuthor"></span>
-                    <br>
-                    <span>Users that liked this article: </span><span id="id_mainArticleRatingUp"></span>
-                    <span>Users that disliked this article: </span><span id="id_mainArticleRatingDown"></span>
-                    <br>
                     <span id="id_mainArticleLeaning"></span>
                     <br>
                     <br>
                     <span id="id_mainArticleText"></span>
                 </div>
-                <div>
                     <button class="btn btn-info btn-md" onclick="updateThumbsUp('id_mainArticle')" id="id_mainArticleThumbsUp">
                         <span class="glyphicon glyphicon-thumbs-up"></span>
                     </button>
+                <span id="id_mainArticleRatingUp"></span>
                     <button class="btn btn-danger btn-md" onclick="updateThumbsDown('id_mainArticle')" id="id_mainArticleThumbsDown">
-                            <span class="glyphicon glyphicon-thumbs-down"></span></button>
+                            <span class="glyphicon glyphicon-thumbs-down"></span>
+                    </button>
+                    <span id="id_mainArticleRatingDown"></span>
+                <div>
+                    
+                    <br>
                     <div id="id_origSlideCtnr">
-                        <input type="range" min="1" max="5" value="3" class="slider" id="id_origLeaning">
+                        <input type="range" min="1" max="5" value="3" class="slider" id="id_origLeaning">,
+                        <br>
                         <span id="id_mainLeaningOutput">Center</span>
+                        <br>
                         <button type="button" class="btn btn-primary" id="id_mainArticleLeaningButton" onclick="click_updateLeaning('main')">Submit Leaning</button>
                     </div>
                 </div>
             </div>
             <div class="col-sm-6">
+                <span id="id_compArticleTitle" class="articleTitles"></span>
                 <div class="well">
-                    TITLE: <span id="id_compArticleTitle"></span>
                     <br> AUTHOR: <span id="id_compArticleAuthor"></span>
                     <br>
                     <span>Users that liked this article: </span><span id="id_compArticleRatingUp"></span>
@@ -126,6 +133,13 @@
 
             setValueFromKeysWithID("Articles/aa2/Rating", "Thumbs Up", "id_mainArticleRatingUp");
             setValueFromKeysWithID("Articles/aa2/Rating", "Thumbs Down", "id_mainArticleRatingDown");
+
+            setValueFromKeysWithID("Articles/aa1", "Title", "id_compArticleTitle");
+            setValueFromKeysWithID("Articles/aa1", "Author", "id_compArticleAuthor");
+            setValueFromKeysWithID("Articles/aa1", "Text", "id_compArticleText");
+
+            setValueFromKeysWithID("Articles/aa1/Rating", "Thumbs Up", "id_compArticleRatingUp");
+            setValueFromKeysWithID("Articles/aa1/Rating", "Thumbs Down", "id_compArticleRatingDown");
         });
 
         // TODO
