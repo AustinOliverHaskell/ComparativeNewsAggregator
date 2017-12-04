@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
@@ -16,6 +19,8 @@
     crossorigin="anonymous"></script>
 
 <!-- End Bootstrap stuff -->
+
+        <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed|Vollkorn+SC" rel="stylesheet">
 
         <link rel="STYLESHEET" type="text/css" href="main.css">
 
@@ -61,6 +66,11 @@
 
     <div class="container">
         <div class="row">
+            <div id="zoomMain" class="col-xs-12">
+                Text Size
+                <button id="zoomMainOut" class="glyphicon glyphicon-minus" height="75" width="75">
+                <button id="zoomMainIn" class="glyphicon glyphicon-plus" height="75" width="75">
+            </div>
             <div class="col-sm-6">
                 <span id="id_mainArticleTitle" class="articleTitles"></span>
                     <br> 
@@ -148,8 +158,10 @@
         // Perform these functions once the DOM has been loaded.
         $(document).ready(function () {
 
-            var mainArticlePath = localStorage.getItem("mainArticle");
-            var compArticlePath = localStorage.getItem("compArticle");
+            var mainArticlePath = "Articles/aa1/";
+            //localStorage.getItem("mainArticle");
+            var compArticlePath = "Articles/aa2/";
+            //localStorage.getItem("compArticle");
 
             setValueFromKeysWithID(mainArticlePath, "Title", "id_mainArticleTitle");
             setValueFromKeysWithID(mainArticlePath, "Author", "id_mainArticleAuthor");
@@ -162,6 +174,29 @@
             setValueFromKeysWithID(compArticlePath, "Text", "id_compArticleText");
             setValueFromKeysWithID(compArticlePath + "Rating", "Thumbs Up", "id_compArticleRatingUp");
             setValueFromKeysWithID(compArticlePath + "Rating", "Thumbs Down", "id_compArticleRatingDown");
+
+            $('#zoomMainIn').click(function(){   
+
+                curSize= parseInt($('#id_mainArticleText').css('font-size')) + 3;
+
+                if(curSize<=51){
+                    $('#id_mainArticleText').css('font-size', curSize);
+                    $('#id_compArticleText').css('font-size', curSize);
+                }
+
+            }); 
+
+            $('#zoomMainOut').click(function(){   
+
+                curSize= parseInt($('#id_mainArticleText').css('font-size')) - 3;
+
+                if(curSize>=12){
+                    $('#id_mainArticleText').css('font-size', curSize);
+                    $('#id_compArticleText').css('font-size', curSize);
+                }
+
+            });
+
         });
 
         // TODO
