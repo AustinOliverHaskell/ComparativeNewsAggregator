@@ -1,4 +1,4 @@
-"Articles" : {
+{"Articles" : {
     "0xfwd2392":{
         "URL":"http://cnn.com",
         "Title":"Trump eats Chinese food",
@@ -94,7 +94,7 @@
     }
 },
 
-"Comparisons" : {
+{"Comparisons" : {
     "hashyhashhash":[
         "0xfwd2392",
         "23dn92ned"
@@ -103,7 +103,7 @@
         "eweld0302",
         "32o30dm30"
     ]
-}				   
+}}  
 					
 					   
 					  
