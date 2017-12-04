@@ -137,21 +137,57 @@
 
             var ref = firebase.database().ref("Keywords/" + keyword);
 
-            ref.once("value").then(function (snapshot) {
+            ref.once("value").then(function(snapshot) {
+			
                 var articlesWithKW = snapshot.val();
-                //console.log(articlesWithKW);
-
-                var count = Object.keys(articlesWithKW).length;
+                console.log(articlesWithKW);
+				
+                count = Object.keys(articlesWithKW).length;
 
                 console.log("# of articles with KW: " + count);
 
+				var arrOfKeys = [];
+				
                 for (var key in articlesWithKW) {
                     console.log(key);
                     console.log(articlesWithKW[key]);
+					arrOfKeys.push(key);
                 }
 
                 var randIndex = Math.floor(Math.random() * count);
-            });
+				
+				var randomlySelectedKey = arrOfKeys[randIndex];
+				
+				console.log("Randomly selected key is " + randomlySelectedKey);
+				
+				var comparisonsRef = firebase.database().ref("Comparisons");
+				comparisonsRef.once("value").then(function(snapshot) {
+				
+					var arrOfMatchingComparisons = [];
+					var allComparisons = snapshot.val();
+					 // Find all comparisons with the randomly selected key
+					for (var key in allComparisons) {
+					
+						console.log(allComparisons[key]);
+						
+						var count2 = Object.keys(allComparisons[key]).length;
+						// Find all instances where there is a matching 
+						for (var i = 0; i < count2; i++)
+						{
+							if (allComparisons[key][i] === randomlySelectedKey) {
+								arrOfMatchingComparisons.push(allComparisons[key][i]);
+							}
+						}
+					}
+					
+					console.log("All the comparison refs with the matching key: " + arrOfMatchingComparisons);
+					// TODO
+					// Instead of matching the article1, article2, match "aa1", "aa2"
+
+				});
+				
+            });		
+			
         });
 
         // TODO
