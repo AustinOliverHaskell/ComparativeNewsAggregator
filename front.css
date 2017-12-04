@@ -1,5 +1,16 @@
 body {
   background-color: #f29559;
-  color: white; }
+  color: white;
+  height: 100%; }
+
+.tile {
+  background-color: #605b56;
+  float: left;
+  height: 20%;
+  text-align: center;
+  padding: 5% 0; }
+
+#tiles {
+  height: 100%; }
 
 /*# sourceMappingURL=front.css.map */

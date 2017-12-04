@@ -7,4 +7,17 @@ $blue: rgba(141, 153, 174, 1);
 body {
 	background-color: $red;
 	color: $white;
+	height: 100%;
+}
+
+.tile {
+	background-color: $grey;
+	float: left;
+	height: 20%;
+	text-align: center;
+	padding: 5% 0;
+}
+
+#tiles {
+	height: 100%;
 }
