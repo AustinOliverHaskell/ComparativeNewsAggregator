@@ -133,20 +133,25 @@
         // Perform these functions once the DOM has been loaded.
         $(document).ready(function () {
 
-            var mainArticlePath = localStorage.getItem("mainArticle");
-            var compArticlePath = localStorage.getItem("compArticle");
+            var keyword = localStorage.getItem("theKeyword");
 
-            setValueFromKeysWithID(mainArticlePath, "Title", "id_mainArticleTitle");
-            setValueFromKeysWithID(mainArticlePath, "Author", "id_mainArticleAuthor");
-            setValueFromKeysWithID(mainArticlePath, "Text", "id_mainArticleText");
-            setValueFromKeysWithID(mainArticlePath + "Rating", "Thumbs Up", "id_mainArticleRatingUp");
-            setValueFromKeysWithID(mainArticlePath + "Rating", "Thumbs Down", "id_mainArticleRatingDown");
+            var ref = firebase.database().ref("Keywords/" + keyword);
 
-            setValueFromKeysWithID(compArticlePath, "Title", "id_compArticleTitle");
-            setValueFromKeysWithID(compArticlePath, "Author", "id_compArticleAuthor");
-            setValueFromKeysWithID(compArticlePath, "Text", "id_compArticleText");
-            setValueFromKeysWithID(compArticlePath + "Rating", "Thumbs Up", "id_compArticleRatingUp");
-            setValueFromKeysWithID(compArticlePath + "Rating", "Thumbs Down", "id_compArticleRatingDown");
+            ref.once("value").then(function (snapshot) {
+                var articlesWithKW = snapshot.val();
+                //console.log(articlesWithKW);
+
+                var count = Object.keys(articlesWithKW).length;
+
+                console.log("# of articles with KW: " + count);
+
+                for (var key in articlesWithKW) {
+                    console.log(key);
+                    console.log(articlesWithKW[key]);
+                }
+
+                var randIndex = Math.floor(Math.random() * count);
+            });
         });
 
         // TODO
