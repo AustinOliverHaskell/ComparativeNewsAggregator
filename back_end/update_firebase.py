@@ -32,7 +32,7 @@ class UpdateFirebase():
 	def _pushEntries(self):
 		
 		for comparison in self.entries:
-		
+					
 			# Holds two hash keys for articles in Firebase
 			comparison_hash_keys = []
 		
@@ -43,7 +43,6 @@ class UpdateFirebase():
 				
 			# Update the comparisons for each article
 			self._updateComparisons(comparison_hash_keys)
-			
 				
 	def _updateComparisons(self, comparison_hash_keys):
 	

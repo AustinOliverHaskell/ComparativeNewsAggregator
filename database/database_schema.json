@@ -1,3 +1,5 @@
+{"KeyBois": ["China", "Trump", "North Kore", "Robert Mueller", "Michael Flyn"],
+
 "Articles" : {
     "0xfwd2392":{
         "URL":"http://cnn.com",
@@ -81,16 +83,12 @@
 			
 "Keywords" : {
     "trump":{
-        "references":{
-            "article_1":"0xfwd2392",
-            "article_2":"23dn92ned"
-        }
+        "comparison1": "ashyhashhash",
+        "comparison2": "hashyhashhash"
+        
     },
     "tesla":{
-        "references":{
-            "article_1":"eweld0302",
-            "article_2":"32o30dm30"
-        }
+    	"comparison1": "comparison_2"
     }
 },
 
@@ -103,7 +101,8 @@
         "eweld0302",
         "32o30dm30"
     ]
-}				   
+}
+}	   
 					
 					   
 					  
