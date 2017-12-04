@@ -3,21 +3,39 @@ from firebase_admin import db
 
 class UpdateFirebase():
 
-	def __init__(self, entries):
+	def __init__(self, articles):
 	
-		# Entry is a list of lists
-		self.entries = entries
-		
+		# entries is a list of lists
+		self.entries = []
+		self._makeJSON(articles)
+
 		# Check entry to see if it fits criteria
-		self._checkParams()
+		#self._checkParams()
 	
 		# Connection to Firebase
-		self.database = firebase.FirebaseApplication("https://newsapp-5d5a8.firebaseio.com/")
+		#self.database = firebase.FirebaseApplication("https://newsapp-5d5a8.firebaseio.com/")
 		
 		# Push entry to database and update keywords
-		self._pushEntries()
+		#self._pushEntries()
 		
-		
+	def _makeJSON(self, articles):
+		for comparison in articles:
+			articleList = []
+			for article in comparison:
+				articleList.append({article.title:{
+                                    "URL":article.url,
+                                    "Title":article.title,
+                                    "Text":article.text,
+                                    "Author":article.authors,
+                                    "Leaning":" ",
+                                    "Keywords":article.keywords,
+                                    "Rating":{
+                                    "UP":0,
+                                    "DOWN":0},
+                                    "Comparisons":[]}})
+			self.entries.append(articleList)
+
+		print(self.entries)
 	def _checkParams(self):
 	
 		if type(self.entries) != list:
