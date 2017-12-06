@@ -67,16 +67,6 @@ class UpdateFirebase():
 		# Note comparison for each key	
 		comparison_id = self.database.post("Comparisons", comparison_hash_keys)
 			
-		for article in comparison_hash_keys:
-		
-			# Get and update comparison list for each article
-			article_id = self.database.get("Articles/%s/Comparisons" % article, None)
-			
-			# Update comparison list with new comparison id
-			article_id.append(comparison_id)
-			
-			# Update firebase with new comparison added to list
-			self.database.patch("Articles/%s/Comparisons" % article, article_id)	
 			
 	
 		
