@@ -57,7 +57,7 @@ class UpdateFirebase():
 			for article in comparison:
 				
 				# Post article to database
-				comparison_hash_keys.append(self.database.post("Articles", article))
+				comparison_hash_keys.append(self.database.post("Articles", article)["name"])
 				
 			# Update the comparisons for each article
 			self._updateComparisons(comparison_hash_keys)
