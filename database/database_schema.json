@@ -6,7 +6,7 @@
         "Title":"Trump eats Chinese food",
         "Text":" ",
         "Author":"John Doe",
-        "Leaning":" ",
+        "Leaning": {"Center" : 0, "Center Left" : 0, "Center Right": 0, "Left" : 0, "Right":0},
         "Keywords":[
             "trump",
             "chinese",
