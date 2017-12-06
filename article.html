@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
@@ -16,6 +19,11 @@
     crossorigin="anonymous"></script>
 
 <!-- End Bootstrap stuff -->
+
+        <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed|Vollkorn+SC" rel="stylesheet">
+
+        <link rel="STYLESHEET" type="text/css" href="main.css">
+
 <html>
 
 <head>
@@ -58,28 +66,37 @@
 
     <div class="container">
         <div class="row">
+            <div id="zoomMain" class="col-xs-12">
+                Text Size
+                <button id="zoomMainOut" class="glyphicon glyphicon-minus" height="75" width="75">
+                <button id="zoomMainIn" class="glyphicon glyphicon-plus" height="75" width="75">
+            </div>
             <div class="col-sm-6">
+                <span id="id_mainArticleTitle" class="articleTitles"></span>
+                    <br> 
+                    by <span id="id_mainArticleAuthor"></span>
                 <div class="well">
-                    TITLE: <span id="id_mainArticleTitle"></span>
-                    <br> AUTHOR: <span id="id_mainArticleAuthor"></span>
-                    <br>
-                    <span>Users that liked this article: </span><span id="id_mainArticleRatingUp"></span>
-                    <span>Users that disliked this article: </span><span id="id_mainArticleRatingDown"></span>
-                    <br>
                     <span id="id_mainArticleLeaning"></span>
                     <br>
                     <br>
                     <span id="id_mainArticleText"></span>
                 </div>
-                <div>
                     <button class="btn btn-info btn-md" onclick="updateThumbsUp('id_mainArticle')" id="id_mainArticleThumbsUp">
                         <span class="glyphicon glyphicon-thumbs-up"></span>
                     </button>
+                <span id="id_mainArticleRatingUp"></span>
                     <button class="btn btn-danger btn-md" onclick="updateThumbsDown('id_mainArticle')" id="id_mainArticleThumbsDown">
-                            <span class="glyphicon glyphicon-thumbs-down"></span></button>
+                            <span class="glyphicon glyphicon-thumbs-down"></span>
+                    </button>
+                    <span id="id_mainArticleRatingDown"></span>
+                <div>
+                    
+                    <br>
                     <div id="id_origSlideCtnr">
-                        <input type="range" min="1" max="5" value="3" class="slider" id="id_origLeaning">
+                        <input type="range" min="1" max="5" value="3" class="slider" id="id_origLeaning">,
+                        <br>
                         <span id="id_mainLeaningOutput">Center</span>
+                        <br>
                         <button type="button" class="btn btn-primary" id="id_mainArticleLeaningButton" onclick="click_updateLeaning('main')">Submit Leaning</button>
                     </div>
                 </div>
@@ -91,26 +108,33 @@
                     <button class="btn btn-primary">Submit Comment</button>
                 </div>
             </div>
+
             <div class="col-sm-6">
+                <span id="id_compArticleTitle" class="articleTitles"></span>
+                    <br> 
+                    by <span id="id_compArticleAuthor"></span>
                 <div class="well">
-                    TITLE: <span id="id_compArticleTitle"></span>
-                    <br> AUTHOR: <span id="id_compArticleAuthor"></span>
-                    <br>
-                    <span>Users that liked this article: </span><span id="id_compArticleRatingUp"></span>
-                    <span>Users that disliked this article: </span><span id="id_compArticleRatingDown"></span>
-                    <br>
-                    <span id="id_compArticleLeaing"></span>
+                    <span id="id_compArticleLeaning"></span>
                     <br>
                     <br>
-                    <span id="id_compArticleText"></span></div>
-                <div>
+                    <span id="id_compArticleText"></span>
+                </div>
                     <button class="btn btn-info btn-md" onclick="updateThumbsUp('id_compArticle')" id="id_compArticleThumbsUp">
-                                <span class="glyphicon glyphicon-thumbs-up"></span></button>
+                        <span class="glyphicon glyphicon-thumbs-up"></span>
+                    </button>
+                <span id="id_compArticleRatingUp"></span>
                     <button class="btn btn-danger btn-md" onclick="updateThumbsDown('id_compArticle')" id="id_compArticleThumbsDown">
-                                    <span class="glyphicon glyphicon-thumbs-down"></span></button>
-                    <div id="id_refSlideCtnr">
-                        <input type="range" min="1" max="5" value="3" class="slider" id="id_refLeaning">
+                            <span class="glyphicon glyphicon-thumbs-down"></span>
+                    </button>
+                    <span id="id_compArticleRatingDown"></span>
+                <div>
+                    
+                    <br>
+                    <div id="id_origSlideCtnr">
+                        <input type="range" min="1" max="5" value="3" class="slider" id="id_origLeaning">,
+                        <br>
                         <span id="id_compLeaningOutput">Center</span>
+                        <br>
                         <button type="button" class="btn btn-primary" id="id_compArticleLeaningButton" onclick="click_updateLeaning('comp')">Submit Leaning</button>
                     </div>
                 </div>
@@ -123,7 +147,8 @@
                 </div>
             </div>
         </div>
-    </div> 
+        <br>
+    </div>
 
 </body>
 
@@ -132,6 +157,28 @@
 <script>
         // Perform these functions once the DOM has been loaded.
         $(document).ready(function () {
+
+            $('#zoomMainIn').click(function(){   
+
+                curSize= parseInt($('#id_mainArticleText').css('font-size')) + 3;
+
+                if(curSize<=51){
+                    $('#id_mainArticleText').css('font-size', curSize);
+                    $('#id_compArticleText').css('font-size', curSize);
+                }
+
+            }); 
+
+            $('#zoomMainOut').click(function(){   
+
+                curSize= parseInt($('#id_mainArticleText').css('font-size')) - 3;
+
+                if(curSize>=12){
+                    $('#id_mainArticleText').css('font-size', curSize);
+                    $('#id_compArticleText').css('font-size', curSize);
+                }
+
+            });
 
             var keyword = localStorage.getItem("theKeyword");
 
