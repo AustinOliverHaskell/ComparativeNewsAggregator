@@ -3,7 +3,7 @@ from firebase_admin import db
 
 class UpdateFirebase():
 
-	def __init__(self, articles):
+	def __init__(self, articles, keywords):
 	
 		# entries is a list of lists
 		self.entries = []
@@ -34,6 +34,9 @@ class UpdateFirebase():
                                     "DOWN":0},
                                     "Comparisons":[]})
 			self.entries.append(articleList)
+			
+			
+			
 		print(self.entries)
 
 		print(self.entries)
@@ -66,6 +69,8 @@ class UpdateFirebase():
 	
 		# Note comparison for each key	
 		comparison_id = self.database.post("Comparisons", comparison_hash_keys)
+		
+	
 			
 			
 	
