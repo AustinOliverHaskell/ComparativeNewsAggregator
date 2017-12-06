@@ -20,8 +20,8 @@ class UpdateFirebase():
 		
 	def _makeJSON(self, articles):
 		for comparison in articles:
-			articleList = []
-			for article in comparison:
+			articleList =[]
+			for article in [comparison.getFirstArticle(), comparison.getSecondArticle()]:
 				articleList.append({
                                     "URL":article.url,
                                     "Title":article.title,
@@ -34,9 +34,7 @@ class UpdateFirebase():
                                     "DOWN":0},
                                     "Comparisons":[]})
 			self.entries.append(articleList)
-		print(self.entries)
 
-		print(self.entries)
 	def _checkParams(self):
 	
 		if type(self.entries) != list:

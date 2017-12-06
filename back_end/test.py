@@ -1,6 +1,6 @@
 import newspaper 
 from newspaper import Article
-from make_comparison import Comparison
+from make_comparison import FindComparisons
 from update_firebase import UpdateFirebase
 
 articles = []
@@ -12,7 +12,7 @@ for article in articles:
     article.parse()
     article.nlp()
 
-comparison = Comparison(articles)
+comparison = FindComparisons(articles)
 
 upfb = UpdateFirebase(comparison.getComparisons())
 

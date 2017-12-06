@@ -1,4 +1,6 @@
-class Comparison():
+from comparison import Comparison
+
+class FindComparisons():
 
     def __init__(self, articles):
 
@@ -8,6 +10,9 @@ class Comparison():
         #holds all the pairs of articles that are found to be similar
         self.comparisons= []
 
+        #Holds all the keywords that appeared as matches
+        self.keywords = []
+
         #Check each article's keywords against all the other keywords to find similar articles
         for article in self.articles:
             for otherArticle in self.articles:
@@ -15,14 +20,27 @@ class Comparison():
                 if(article.title != otherArticle.title):
                     #Finds the similar keywords between articles
                     simKeys = set(article.keywords) & set(otherArticle.keywords)
+
                     #We chose 4 by comapring what actual similar articles returned 
                     if(len(simKeys) >= 5):
-                        self.comparisons.append([article, otherArticle])
-        for comparison in self.comparisons:
-            for temp in comparison:
-                pass
+                        #Tracks whether or not we've already found this match of articles before
+                        alreadyMatched = False
+
+                        #Check all the comparisons to make sure we haven't already found it 
+                        for comparison in self.comparisons:
+                            if(comparison.getFirstArticle().title == article.title or comparison.getSecondArticle().title == article.title):
+                                alreadyMatched = True
+                                break
+
+                        #A comparison tha has already been matched should not be added to control duplicates
+                        if not alreadyMatched:
+                            self.comparisons.append(Comparison(article, otherArticle, simKeys))
+
     
     def getComparisons(self):
         return self.comparisons
+
+    def getKeywords(self):
+        return self.keywords
 
 
