@@ -27,7 +27,7 @@ class UpdateFirebase():
                                     "Title":article.title,
                                     "Text":article.text,
                                     "Author":article.authors,
-                                    "Leaning":" ",
+                                    "Leaning":{"Center" : 0, "Center Left" : 0, "Center Right": 0, "Left" : 0, "Right":0},
                                     "Keywords":article.keywords,
                                     "Rating":{
                                     "UP":0,
