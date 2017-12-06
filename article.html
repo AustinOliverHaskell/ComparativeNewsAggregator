@@ -140,50 +140,73 @@
             ref.once("value").then(function(snapshot) {
 			
                 var articlesWithKW = snapshot.val();
-                console.log(articlesWithKW);
+                //console.log(articlesWithKW);
 				
                 count = Object.keys(articlesWithKW).length;
 
-                console.log("# of articles with KW: " + count);
+                //console.log("# of articles with KW: " + count);
 
 				var arrOfKeys = [];
 				
                 for (var key in articlesWithKW) {
                     console.log(key);
                     console.log(articlesWithKW[key]);
-					arrOfKeys.push(key);
+					arrOfKeys.push(articlesWithKW[key]);
                 }
 
                 var randIndex = Math.floor(Math.random() * count);
 				
 				var randomlySelectedKey = arrOfKeys[randIndex];
 				
-				console.log("Randomly selected key is " + randomlySelectedKey);
+				//console.log("Randomly selected key is " + randomlySelectedKey);
 				
 				var comparisonsRef = firebase.database().ref("Comparisons");
 				comparisonsRef.once("value").then(function(snapshot) {
 				
 					var arrOfMatchingComparisons = [];
 					var allComparisons = snapshot.val();
+                    //console.log(allComparisons);
 					 // Find all comparisons with the randomly selected key
 					for (var key in allComparisons) {
-					
-						console.log(allComparisons[key]);
+	
+						//console.log(allComparisons[key]);
 						
 						var count2 = Object.keys(allComparisons[key]).length;
 						// Find all instances where there is a matching 
 						for (var i = 0; i < count2; i++)
 						{
 							if (allComparisons[key][i] === randomlySelectedKey) {
-								arrOfMatchingComparisons.push(allComparisons[key][i]);
+								arrOfMatchingComparisons.push(key);
 							}
 						}
 					}
 					
-					console.log("All the comparison refs with the matching key: " + arrOfMatchingComparisons);
-					// TODO
-					// Instead of matching the article1, article2, match "aa1", "aa2"
+					//console.log("All the comparison refs with the matching key: " + arrOfMatchingComparisons);
 
+                    randIndex = Math.floor(Math.random() * arrOfMatchingComparisons.length);
+
+                    //console.log("Randomly selected index in array: " + randIndex);
+                    //console.log(allComparisons[arrOfMatchingComparisons[randIndex]]);
+                    var mainArticleRef = firebase.database().ref("Articles/" + allComparisons[arrOfMatchingComparisons[randIndex]][0]);
+                    var compArticleRef = firebase.database().ref("Articles/" + allComparisons[arrOfMatchingComparisons[randIndex]][1]);
+
+                    var mainArticlePath = "Articles/" + allComparisons[arrOfMatchingComparisons[randIndex]][0] + "/";
+                    var compArticlePath = "Articles/" + allComparisons[arrOfMatchingComparisons[randIndex]][1] + "/";
+
+                    setValueFromKeysWithID(mainArticlePath, "Title", "id_mainArticleTitle");
+                    setValueFromKeysWithID(mainArticlePath, "Author", "id_mainArticleAuthor");
+                    setValueFromKeysWithID(mainArticlePath, "Text", "id_mainArticleText");
+                    setValueFromKeysWithID(mainArticlePath + "Rating", "Thumbs Up", "id_mainArticleRatingUp");
+                    setValueFromKeysWithID(mainArticlePath + "Rating", "Thumbs Down", "id_mainArticleRatingDown");
+                    setValueFromKeysWithID(compArticlePath, "Title", "id_compArticleTitle");
+                    setValueFromKeysWithID(compArticlePath, "Author", "id_compArticleAuthor");
+                    setValueFromKeysWithID(compArticlePath, "Text", "id_compArticleText");
+                    setValueFromKeysWithID(compArticlePath + "Rating", "Thumbs Up", "id_compArticleRatingUp");
+                    setValueFromKeysWithID(compArticlePath + "Rating", "Thumbs Down", "id_compArticleRatingDown");
+
+                    // TODO
+                    // Add all of the leaning submissions (Of # users, # said it was left, # said it was center left, etc...)
+                    // Provide user the source of the article after they submit their evaluations
 				});
 				
             });		
