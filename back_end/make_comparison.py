@@ -18,9 +18,6 @@ class Comparison():
                     #We chose 4 by comapring what actual similar articles returned 
                     if(len(simKeys) >= 5):
                         self.comparisons.append([article, otherArticle])
-                        print(simKeys)
-                        #print(article.title)
-                        #print(otherArticle.title)
         for comparison in self.comparisons:
             for temp in comparison:
                 pass

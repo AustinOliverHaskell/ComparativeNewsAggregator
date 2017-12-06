@@ -10,19 +10,19 @@ class UpdateFirebase():
 		self._makeJSON(articles)
 
 		# Check entry to see if it fits criteria
-		#self._checkParams()
+		self._checkParams()
 	
 		# Connection to Firebase
-		#self.database = firebase.FirebaseApplication("https://newsapp-5d5a8.firebaseio.com/")
+		self.database = firebase.FirebaseApplication("https://newsapp-5d5a8.firebaseio.com/")
 		
 		# Push entry to database and update keywords
-		#self._pushEntries()
+		self._pushEntries()
 		
 	def _makeJSON(self, articles):
 		for comparison in articles:
 			articleList = []
 			for article in comparison:
-				articleList.append({article.title:{
+				articleList.append({
                                     "URL":article.url,
                                     "Title":article.title,
                                     "Text":article.text,
@@ -32,8 +32,9 @@ class UpdateFirebase():
                                     "Rating":{
                                     "UP":0,
                                     "DOWN":0},
-                                    "Comparisons":[]}})
+                                    "Comparisons":[]})
 			self.entries.append(articleList)
+		print(self.entries)
 
 		print(self.entries)
 	def _checkParams(self):
@@ -42,11 +43,10 @@ class UpdateFirebase():
 			
 			raise ValueError("The entry must be a list of lists containing two comparison articles in order to post to Firebase")
 			
-		if self.entries.size() == 0:
+		if len(self.entries) == 0:
 			
 			raise ValueError("The list of lists is empty. Nothing can be posted to the Firebase")
 			
-		
 	def _pushEntries(self):
 		
 		for comparison in self.entries:
@@ -57,15 +57,15 @@ class UpdateFirebase():
 			for article in comparison:
 				
 				# Post article to database
-				comparison_hash_keys.append(self.database.post("Articles", article, {'print': 'pretty'}, {'X_FANCY_HEADER': 'VERY FANCY'}))
+				comparison_hash_keys.append(self.database.post("Articles", article))
 				
 			# Update the comparisons for each article
 			self._updateComparisons(comparison_hash_keys)
-				
+
 	def _updateComparisons(self, comparison_hash_keys):
 	
 		# Note comparison for each key	
-		comparison_id = self.database.post("Comparisons", comparison_hash_keys, {'print': 'pretty'}, {'X_FANCY_HEADER': 'VERY FANCY'})
+		comparison_id = self.database.post("Comparisons", comparison_hash_keys)
 			
 		for aritlce in comparison_hash_key:
 		
@@ -76,7 +76,9 @@ class UpdateFirebase():
 			article_id.append(comparison_id)
 			
 			# Update firebase with new comparison added to list
-			self.database.path("Articles/%s/Comparisons" % article, article_id)	
+			self.database.patch("Articles/%s/Comparisons" % article, article_id)	
+			
+	
 		
 		
 					
