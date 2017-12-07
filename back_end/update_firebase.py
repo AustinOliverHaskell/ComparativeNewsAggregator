@@ -3,22 +3,23 @@ from firebase_admin import db
 
 class UpdateFirebase():
 
-	def __init__(self, articles, keywords):
+	def __init__(self, articles):
 	
 		# entries is a list of lists
 		self.entries = []
 		self._makeJSON(articles)
+		
+		# Connection to Firebase
+		self.database = firebase.FirebaseApplication("https://newsapp-5d5a8.firebaseio.com/")
 
 		# Check entry to see if it fits criteria
 		self._checkParams()
-	
-		# Connection to Firebase
-		self.database = firebase.FirebaseApplication("https://newsapp-5d5a8.firebaseio.com/")
 		
 		# Push entry to database and update keywords
 		self._pushEntries()
 		
 	def _makeJSON(self, articles):
+	
 		for comparison in articles:
 			articleList =[]
 			for article in [comparison.getFirstArticle(), comparison.getSecondArticle()]:
@@ -33,6 +34,7 @@ class UpdateFirebase():
                                     "UP":0,
                                     "DOWN":0},
                                     "Comparisons":[]})
+                                    
 			self.entries.append(articleList)
 
 	def _checkParams(self):
@@ -64,11 +66,4 @@ class UpdateFirebase():
 	
 		# Note comparison for each key	
 		comparison_id = self.database.post("Comparisons", comparison_hash_keys)
-		
-	
 			
-			
-	
-		
-		
-					
