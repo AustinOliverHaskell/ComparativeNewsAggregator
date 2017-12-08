@@ -30,7 +30,9 @@
 
 		</div>
 
-		<div class = "row" id = "tiles">
+		<div class="container-fluid">
+			<div class = "row" id = "tiles">
+			</div>
 		</div>
 
 
@@ -41,8 +43,23 @@
 	    <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-database.js"></script>
 	    <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-firestore.js"></script>
 	    <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-messaging.js"></script>
+
+	     <script>
+	        // Initialize Firebase
+	        var config =
+	            {
+	                apiKey: "AIzaSyDqs1V4sQgKsXXe071909_aO_SLy5P7bpE",
+	                authDomain: "newsapp-5d5a8.firebaseapp.com",
+	                databaseURL: "https://newsapp-5d5a8.firebaseio.com",
+	                projectId: "newsapp-5d5a8",
+	                storageBucket: "newsapp-5d5a8.appspot.com",
+	                messagingSenderId: "536892297743"
+	            };
+
+        	firebase.initializeApp(config);
+    	</script>
+
 		<script>
-			createTiles();
 
 			$(document).ready(function() {
 
