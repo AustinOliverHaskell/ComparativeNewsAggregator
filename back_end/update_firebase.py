@@ -8,7 +8,15 @@ class UpdateFirebase():
 		# entries is a list of lists
 		self.entries = []
 		self.keyBois = []
+		
+		
+		self.rawComparisons = articles
+		self.articleHashes = []
+		self.comparisonHashes = []
+		
 		self._makeJSON(articles)
+		
+		
 		self._fillKeyBois(articles)
 		
 		# Connection to Firebase
@@ -25,8 +33,6 @@ class UpdateFirebase():
 			for keyBoi in comparison.getMatchingKeywords():
 				if not keyBoi in self.keyBois: self.keyBois.append(keyBoi)
 
-		for keyBoi in self.keyBois:
-			print(keyBoi)
 	def _makeJSON(self, articles):
 	
 		for comparison in articles:
@@ -59,23 +65,48 @@ class UpdateFirebase():
 	def _pushEntries(self):
 		
 		for comparison in self.entries:
-					
-			# Holds two hash keys for articles in Firebase
-			comparison_hash_keys = []
 		
 			for article in comparison:
 				
 				# Post article to database
-				comparison_hash_keys.append(self.database.post("Articles", article)["name"])
+				self.articleHashes.append(self.database.post("Articles", article)["name"])
 				
 			# Update the comparisons for each article
-			self._updateComparisons(comparison_hash_keys)
+			self._updateComparisons()
 			self._updateKeyBois()
+			self._updateKeywords()
 
-	def _updateComparisons(self, comparison_hash_keys):
+	def _updateComparisons(self):
 	
 		# Note comparison for each key	
-		comparison_id = self.database.post("Comparisons", comparison_hash_keys)
+		self.comparisonHashes.append(self.database.post("Comparisons", self.articleHashes)["name"])
 	
 	def _updateKeyBois(self):
+	
 		self.database.patch("", {"Keybois": self.keyBois})
+	
+	def _updateKeywords(self):
+	
+		for hash_id, comparison in enumerate(self.rawComparisons, start = 0):
+	
+			keywords = comparison.getMatchingKeywords()
+		
+			for keyword in keywords:
+		
+				if self.database.get("Keywords/%s" % keyword, None) is None:
+				
+					self.database.patch("Keywords", {keyword : [self.comparisonHashes[hash_id]]})
+				
+				else:
+			
+					comparison_list = self.database.get("Keywords/%s" % keyword, None)
+				
+					comparison_list.append(self.comparisonHashes[hash_id])
+				
+					self.database.patch("Keywords", {keyword: comparison_list})
+				
+				  
+				
+			
+		
+		
