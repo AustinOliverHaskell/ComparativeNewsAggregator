@@ -2,26 +2,71 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Page Title</title>
+		<title>The news</title>
+		<script
+		  src="https://code.jquery.com/jquery-3.2.1.min.js"
+		  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+		  crossorigin="anonymous"></script>
+
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+		<!-- Fonts include from google fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed|Vollkorn+SC" rel="stylesheet">
+
+		<link rel="STYLESHEET" type="text/css" href="front.css">
+		<script src="scrape.js"></script>
 	</head>
 
 	<body>
+		<div class="row" id="header">
+			
 
-		<h1 id="heading">This is a Heading</h1>
-		<button onclick="myFunction()">Try it</button>
+		</div>
+
+		<div class="container-fluid">
+			<div class = "row" id = "tiles">
+			</div>
+		</div>
+
+
+		<!-- Firebase stuff -->
+	    <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+	    <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-app.js"></script>
+	    <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-auth.js"></script>
+	    <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-database.js"></script>
+	    <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-firestore.js"></script>
+	    <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-messaging.js"></script>
+
+	     <script>
+	        // Initialize Firebase
+	        var config =
+	            {
+	                apiKey: "AIzaSyDqs1V4sQgKsXXe071909_aO_SLy5P7bpE",
+	                authDomain: "newsapp-5d5a8.firebaseapp.com",
+	                databaseURL: "https://newsapp-5d5a8.firebaseio.com",
+	                projectId: "newsapp-5d5a8",
+	                storageBucket: "newsapp-5d5a8.appspot.com",
+	                messagingSenderId: "536892297743"
+	            };
+
+        	firebase.initializeApp(config);
+    	</script>
+
+		<script>
+
+			$(document).ready(function() {
+
+			scrapeKeywords();
+
+		});
+		</script>
 
 	</body>
-
-	<script>
-		function myFunction(){
-			var front = ["Bone", "Meat", "Lump", "Tire", "Face", "Crash", "Jack", "Blood", "Dirty"];
-			var back = ["Bone", "Meat", "Lump", "Tire", "Face", "Crash", "Jack", "Blood", "Dirty"];
-			var f1 = front[Math.floor(Math.random()*front.length)];
-			var b1 = back[Math.floor(Math.random()*back.length)];
-			var name = f1.concat(b1);
-
-			document.getElementById("heading").innerHTML = name;
-		}
-
-	</script>
 </html>

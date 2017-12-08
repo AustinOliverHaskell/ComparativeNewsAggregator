@@ -1,0 +1,25 @@
+$black: rgba(25, 23, 22, 1);
+$white: rgba(255, 255, 255, 1);
+$grey: rgba(96, 91, 86, 1);
+$red: rgba(242, 149, 89, 1);
+$blue: rgba(141, 153, 174, 1);
+
+
+body {
+	background-color: $white;
+	color: $black;
+	height: 100%;
+}
+
+.tile {
+	background-color: $grey;
+	float: left;
+	text-align: center;
+
+}
+
+#tiles {
+	height: 100%;
+	background-color: $white;
+}
+

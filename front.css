@@ -1,0 +1,15 @@
+body {
+  background-color: white;
+  color: #191716;
+  height: 100%; }
+
+.tile {
+  background-color: #605b56;
+  float: left;
+  text-align: center; }
+
+#tiles {
+  height: 100%;
+  background-color: white; }
+
+/*# sourceMappingURL=front.css.map */
