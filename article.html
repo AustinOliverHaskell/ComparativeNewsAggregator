@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -20,9 +20,9 @@
 
 <!-- End Bootstrap stuff -->
 
-        <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed|Vollkorn+SC" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed|Vollkorn+SC" rel="stylesheet">
 
-        <link rel="STYLESHEET" type="text/css" href="main.css">
+<link rel="STYLESHEET" type="text/css" href="main.css">
 
 <html>
 
@@ -81,70 +81,77 @@
                     <br>
                     <span id="id_mainArticleText"></span>
                 </div>
-                    <button class="btn btn-info btn-md" onclick="updateThumbsUp('id_mainArticle')" id="id_mainArticleThumbsUp">
+                    <button class="btn btn-info btn-md" id="id_mainArticleThumbsUp">
                         <span class="glyphicon glyphicon-thumbs-up"></span>
                     </button>
                 <span id="id_mainArticleRatingUp"></span>
-                    <button class="btn btn-danger btn-md" onclick="updateThumbsDown('id_mainArticle')" id="id_mainArticleThumbsDown">
+                <button class="btn btn-danger btn-md" id="id_mainArticleThumbsDown">
                             <span class="glyphicon glyphicon-thumbs-down"></span>
                     </button>
-                    <span id="id_mainArticleRatingDown"></span>
+                <span id="id_mainArticleRatingDown"></span>
                 <div>
-                    
+
                     <br>
                     <div id="id_origSlideCtnr">
-                        <input type="range" min="1" max="5" value="3" class="slider" id="id_origLeaning">,
+                        <input type="range" min="1" max="5" value="3" class="slider" id="id_origLeaning">
+                        Left: <span id="id_mainLeft"></span>      Left Center: <span id="id_mainLeftCenter"></span>        Center: <span id="id_mainCenter"></span>        Right-Center: <span id="id_mainRightCenter"></span>       Right: <span id="id_mainRight"></span>
                         <br>
                         <span id="id_mainLeaningOutput">Center</span>
                         <br>
-                        <button type="button" class="btn btn-primary" id="id_mainArticleLeaningButton" onclick="click_updateLeaning('main')">Submit Leaning</button>
+                        <button type="button" class="btn btn-primary" id="id_mainArticleLeaningButton">Submit Leaning</button>
                     </div>
                 </div>
+                <!--
                 <div>
                     <div class="form-group">
-                        <label for="exampleTextarea">Example textarea</label>
+                        <br>
+                        <label for="exampleTextarea">Submit a Comment BOYO</label>
                         <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
                     </div>
                     <button class="btn btn-primary">Submit Comment</button>
                 </div>
+            -->
             </div>
 
             <div class="col-sm-6">
                 <span id="id_compArticleTitle" class="articleTitles"></span>
-                    <br> 
-                    by <span id="id_compArticleAuthor"></span>
+                <br> by <span id="id_compArticleAuthor"></span>
                 <div class="well">
                     <span id="id_compArticleLeaning"></span>
                     <br>
                     <br>
                     <span id="id_compArticleText"></span>
                 </div>
-                    <button class="btn btn-info btn-md" onclick="updateThumbsUp('id_compArticle')" id="id_compArticleThumbsUp">
+                <button class="btn btn-info btn-md" id="id_compArticleThumbsUp">
                         <span class="glyphicon glyphicon-thumbs-up"></span>
                     </button>
                 <span id="id_compArticleRatingUp"></span>
-                    <button class="btn btn-danger btn-md" onclick="updateThumbsDown('id_compArticle')" id="id_compArticleThumbsDown">
+                <button class="btn btn-danger btn-md" id="id_compArticleThumbsDown">
                             <span class="glyphicon glyphicon-thumbs-down"></span>
                     </button>
-                    <span id="id_compArticleRatingDown"></span>
+                <span id="id_compArticleRatingDown"></span>
                 <div>
-                    
+
                     <br>
-                    <div id="id_origSlideCtnr">
-                        <input type="range" min="1" max="5" value="3" class="slider" id="id_origLeaning">,
+                    <div id="id_refSlideCtnr">
+                        <input type="range" min="1" max="5" value="3" class="slider" id="id_refLeaning">
+                        Left: <span id="id_compLeft"></span>      Left Center: <span id="id_compLeftCenter"></span>        Center: <span id="id_compCenter"></span>        Right-Center: <span id="id_compRightCenter"></span>       Right: <span id="id_compRight"></span>
                         <br>
                         <span id="id_compLeaningOutput">Center</span>
                         <br>
-                        <button type="button" class="btn btn-primary" id="id_compArticleLeaningButton" onclick="click_updateLeaning('comp')">Submit Leaning</button>
+                        <button type="button" class="btn btn-primary" id="id_compArticleLeaningButton">Submit Leaning</button>
                     </div>
                 </div>
+                <!--
                 <div>
                     <div class="form-group">
-                        <label for="exampleTextarea">Example textarea</label>
+                        <br>
+                        <label for="exampleTextarea">Submit a Comment, fair princess</label>
                         <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
                     </div>
                     <button class="btn btn-primary">Submit Comment</button>
                 </div>
+            -->
             </div>
         </div>
         <br>
@@ -155,25 +162,28 @@
 </html>
 
 <script>
+        var mainArticleRef;
+        var compArticleRef;
+
         // Perform these functions once the DOM has been loaded.
         $(document).ready(function () {
 
-            $('#zoomMainIn').click(function(){   
+            $('#zoomMainIn').click(function () {
 
-                curSize= parseInt($('#id_mainArticleText').css('font-size')) + 3;
+                curSize = parseInt($('#id_mainArticleText').css('font-size')) + 3;
 
-                if(curSize<=51){
+                if (curSize <= 51) {
                     $('#id_mainArticleText').css('font-size', curSize);
                     $('#id_compArticleText').css('font-size', curSize);
                 }
 
-            }); 
+            });
 
-            $('#zoomMainOut').click(function(){   
+            $('#zoomMainOut').click(function () {
 
-                curSize= parseInt($('#id_mainArticleText').css('font-size')) - 3;
+                curSize = parseInt($('#id_mainArticleText').css('font-size')) - 3;
 
-                if(curSize>=12){
+                if (curSize >= 12) {
                     $('#id_mainArticleText').css('font-size', curSize);
                     $('#id_compArticleText').css('font-size', curSize);
                 }
@@ -184,51 +194,50 @@
 
             var ref = firebase.database().ref("Keywords/" + keyword);
 
-            ref.once("value").then(function(snapshot) {
-			
+            ref.once("value").then(function (snapshot) {
+
                 var articlesWithKW = snapshot.val();
                 //console.log(articlesWithKW);
-				
+
                 count = Object.keys(articlesWithKW).length;
 
                 //console.log("# of articles with KW: " + count);
 
-				var arrOfKeys = [];
-				
+                var arrOfKeys = [];
+
                 for (var key in articlesWithKW) {
                     console.log(key);
                     console.log(articlesWithKW[key]);
-					arrOfKeys.push(articlesWithKW[key]);
+                    arrOfKeys.push(articlesWithKW[key]);
                 }
 
                 var randIndex = Math.floor(Math.random() * count);
-				
-				var randomlySelectedKey = arrOfKeys[randIndex];
-				
-				//console.log("Randomly selected key is " + randomlySelectedKey);
-				
-				var comparisonsRef = firebase.database().ref("Comparisons");
-				comparisonsRef.once("value").then(function(snapshot) {
-				
-					var arrOfMatchingComparisons = [];
-					var allComparisons = snapshot.val();
+
+                var randomlySelectedKey = arrOfKeys[randIndex];
+
+                console.log("Randomly selected key is " + randomlySelectedKey);
+
+                var comparisonsRef = firebase.database().ref("Comparisons");
+                comparisonsRef.once("value").then(function (snapshot) {
+
+                    var arrOfMatchingComparisons = [];
+                    var allComparisons = snapshot.val();
                     //console.log(allComparisons);
-					 // Find all comparisons with the randomly selected key
-					for (var key in allComparisons) {
-	
-						//console.log(allComparisons[key]);
-						
-						var count2 = Object.keys(allComparisons[key]).length;
-						// Find all instances where there is a matching 
-						for (var i = 0; i < count2; i++)
-						{
-							if (allComparisons[key][i] === randomlySelectedKey) {
-								arrOfMatchingComparisons.push(key);
-							}
-						}
-					}
-					
-					//console.log("All the comparison refs with the matching key: " + arrOfMatchingComparisons);
+                    // Find all comparisons with the randomly selected key
+                    for (var key in allComparisons) {
+
+                        //console.log(allComparisons[key]);
+
+                        var count2 = Object.keys(allComparisons[key]).length;
+                        // Find all instances where there is a matching 
+                        for (var i = 0; i < count2; i++) {
+                            if (allComparisons[key][i] === randomlySelectedKey) {
+                                arrOfMatchingComparisons.push(key);
+                            }
+                        }
+                    }
+
+                    //console.log("All the comparison refs with the matching key: " + arrOfMatchingComparisons);
 
                     randIndex = Math.floor(Math.random() * arrOfMatchingComparisons.length);
 
@@ -245,19 +254,111 @@
                     setValueFromKeysWithID(mainArticlePath, "Text", "id_mainArticleText");
                     setValueFromKeysWithID(mainArticlePath + "Rating", "Thumbs Up", "id_mainArticleRatingUp");
                     setValueFromKeysWithID(mainArticlePath + "Rating", "Thumbs Down", "id_mainArticleRatingDown");
+                    
                     setValueFromKeysWithID(compArticlePath, "Title", "id_compArticleTitle");
                     setValueFromKeysWithID(compArticlePath, "Author", "id_compArticleAuthor");
                     setValueFromKeysWithID(compArticlePath, "Text", "id_compArticleText");
                     setValueFromKeysWithID(compArticlePath + "Rating", "Thumbs Up", "id_compArticleRatingUp");
                     setValueFromKeysWithID(compArticlePath + "Rating", "Thumbs Down", "id_compArticleRatingDown");
 
+                    setValueFromKeysWithID(mainArticlePath + "Political Leaning", "Left", "id_mainLeft");
+                    setValueFromKeysWithID(mainArticlePath + "Political Leaning", "Center Left", "id_mainLeftCenter");
+                    setValueFromKeysWithID(mainArticlePath + "Political Leaning", "Center", "id_mainCenter");
+                    setValueFromKeysWithID(mainArticlePath + "Political Leaning", "Center Right", "id_mainRightCenter");
+                    setValueFromKeysWithID(mainArticlePath + "Political Leaning", "Right", "id_mainRight");
+
+                    setValueFromKeysWithID(compArticlePath + "Political Leaning", "Left", "id_compLeft");
+                    setValueFromKeysWithID(compArticlePath + "Political Leaning", "Center Left", "id_compLeftCenter");
+                    setValueFromKeysWithID(compArticlePath + "Political Leaning", "Center", "id_compCenter");
+                    setValueFromKeysWithID(compArticlePath + "Political Leaning", "Center Right", "id_compRightCenter");
+                    setValueFromKeysWithID(compArticlePath + "Political Leaning", "Right", "id_compRight");
+
+                    mainArticleRef = allComparisons[arrOfMatchingComparisons[randIndex]][0];
+                    compArticleRef = allComparisons[arrOfMatchingComparisons[randIndex]][1];
+                    //console.log("Asynch main: " + mainArticleRef);
+                    //console.log("Asynch comp: " + compArticleRef);
+
+                    $('#id_mainArticleThumbsUp').click(function () {
+                        $("#id_mainArticleRatingUp").text(parseInt($("#id_mainArticleRatingUp").text()) + 1);
+                        incrementSpecificPath("Articles/" + mainArticleRef + "/Rating", "Thumbs Up");
+                        var button = "#id_mainArticleThumbsUp";
+                        var accompanyButton = "#id_mainArticleThumbsDown";
+                        disableButton(button);
+                        disableButton(accompanyButton);
+                    });
+
+                    $('#id_mainArticleThumbsDown').click(function () {
+                        $("#id_mainArticleRatingDown").text(parseInt($("#id_mainArticleRatingDown").text()) + 1);
+                        incrementSpecificPath("Articles/" + mainArticleRef + "/Rating", "Thumbs Down");
+                        var button = "#id_mainArticleThumbsUp";
+                        var accompanyButton = "#id_mainArticleThumbsDown";
+                        disableButton(button);
+                        disableButton(accompanyButton);
+                    });
+
+                    $('#id_compArticleThumbsUp').click(function () {
+                        $("#id_compArticleRatingUp").text(parseInt($("#id_compArticleRatingUp").text()) + 1);
+                        incrementSpecificPath("Articles/" + compArticleRef + "/Rating", "Thumbs Up");
+                        var button = "#id_compArticleThumbsUp";
+                        var accompanyButton = "#id_compArticleThumbsDown";
+                        disableButton(button);
+                        disableButton(accompanyButton);
+                    });
+
+                    $('#id_compArticleThumbsDown').click(function () {
+                        $("#id_compArticleRatingDown").text(parseInt($("#id_compArticleRatingDown").text()) + 1);
+                        incrementSpecificPath("Articles/" + compArticleRef + "/Rating", "Thumbs Down");
+                        var button = "#id_compArticleThumbsUp";
+                        var accompanyButton = "#id_compArticleThumbsDown";
+                        disableButton(button);
+                        disableButton(accompanyButton);
+                    });
+
+                    $("#id_mainArticleLeaningButton").click(function() {
+                        var stringReplace = "#id_mainLeaningOutput";
+                        var leaningText = $(stringReplace).html();
+                        incrementSpecificPath("Articles/" + mainArticleRef + "/Political Leaning", leaningText);
+                        var button = "#id_mainArticleLeaningButton";
+                        disableButton(button);
+                        disableButton("#id_origLeaning");
+                    });
+
+                    $("#id_compArticleLeaningButton").click(function() {
+                        var stringReplace = "#id_compLeaningOutput";
+                        var leaningText = $(stringReplace).html();
+                        incrementSpecificPath("Articles/" + compArticleRef + "/Political Leaning", leaningText);
+                        var button = "#id_compArticleLeaningButton";
+                        disableButton(button);
+                        disableButton("#id_refLeaning");
+                    });
+
+                    function checkToDisplayURL(bool_has)
+
+                    function updateThumbsDown(buttonID, articleType) {
+            var articleRef;
+
+            if (articleType === 'main') {
+                articleRef = mainArticleRef;
+            }
+            else {
+                articleRef = compArticleRef;
+            }
+            console.log("THE ARTICLE REF ====== " + articleRef);
+            incrementSpecificPath("Articles/" + articleRef + "/Rating", "Thumbs Down");
+            var button = "#" + buttonID + "ThumbsDown";
+            var accompanyButton = "#" + buttonID + "ThumbsUp";
+            disableButton(button);
+            disableButton(accompanyButton);
+        }
+
+
                     // TODO
                     // Add all of the leaning submissions (Of # users, # said it was left, # said it was center left, etc...)
                     // Provide user the source of the article after they submit their evaluations
-				});
-				
-            });		
-			
+                });
+
+            });
+
         });
 
         // TODO
@@ -332,18 +433,19 @@
         // Condense
         // TODO
         // Remove hard coded paths
-        function updateThumbsUp(buttonID) {
-            incrementSpecificPath("Articles/aa2/Rating", "Thumbs Up");
+        function updateThumbsUp(buttonID, articleType) {
+            var articleRef;
+
+            if (articleType === 'main') {
+                articleRef = mainArticleRef;
+            }
+            else {
+                articleRef = compArticleRef;
+            }
+            console.log("THE ARTICLE REF ====== " + articleRef);
+            incrementSpecificPath("Articles/" + articleRef + "/Rating", "Thumbs Up");
             var button = "#" + buttonID + "ThumbsUp";
             var accompanyButton = "#" + buttonID + "ThumbsDown";
-            disableButton(button);
-            disableButton(accompanyButton);
-        }
-
-        function updateThumbsDown(buttonID) {
-            incrementSpecificPath("Articles/aa2/Rating", "Thumbs Down");
-            var button = "#" + buttonID + "ThumbsDown";
-            var accompanyButton = "#" + buttonID + "ThumbsUp";
             disableButton(button);
             disableButton(accompanyButton);
         }
@@ -351,19 +453,6 @@
         function disableButton(buttonID) {
             $(buttonID).addClass('disabled'); // Disables visually
             $(buttonID).prop('disabled', true); // Disables visually + functionally
-        }
-
-        function click_updateLeaning(buttonID) {
-            var stringReplace = "#id_" + buttonID + "LeaningOutput";
-            var leaningText = $(stringReplace).html();
-            incrementSpecificPath("Articles/aa2/Political Leaning", leaningText);
-            var button = "#id_" + buttonID + "ArticleLeaningButton";
-            disableButton(button);
-
-            // TODO
-            // Disable the slider
-            //var slider = "#id_refLeaning";
-            //disableButton(slider);
         }
 
         function incrementSpecificPath(parentPath, childName) {
