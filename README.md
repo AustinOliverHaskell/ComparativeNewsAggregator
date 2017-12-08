@@ -1,2 +1,2 @@
 # ComparativeNewsAggregator
-News site that shows clashing news articles 
+News site that shows clashing news articles .
