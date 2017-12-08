@@ -7,7 +7,9 @@ class UpdateFirebase():
 	
 		# entries is a list of lists
 		self.entries = []
+		self.keyBois = []
 		self._makeJSON(articles)
+		self._fillKeyBois(articles)
 		
 		# Connection to Firebase
 		self.database = firebase.FirebaseApplication("https://newsapp-5d5a8.firebaseio.com/")
@@ -17,7 +19,14 @@ class UpdateFirebase():
 		
 		# Push entry to database and update keywords
 		self._pushEntries()
-		
+
+	def _fillKeyBois(self, articles):
+		for comparison in articles:
+			for keyBoi in comparison.getMatchingKeywords():
+				if not keyBoi in self.keyBois: self.keyBois.append(keyBoi)
+
+		for keyBoi in self.keyBois:
+			print(keyBoi)
 	def _makeJSON(self, articles):
 	
 		for comparison in articles:
@@ -61,9 +70,12 @@ class UpdateFirebase():
 				
 			# Update the comparisons for each article
 			self._updateComparisons(comparison_hash_keys)
+			self._updateKeyBois()
 
 	def _updateComparisons(self, comparison_hash_keys):
 	
 		# Note comparison for each key	
 		comparison_id = self.database.post("Comparisons", comparison_hash_keys)
-			
+	
+	def _updateKeyBois(self):
+		self.database.patch("", {"Keybois": self.keyBois})
