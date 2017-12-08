@@ -1,6 +1,7 @@
 body {
   background-color: white;
   color: #605b56;
+
   font-family: "Barlow Semi Condensed", sans-serif; }
 
 .title {
@@ -60,3 +61,59 @@ body {
     color: #333; } }
 
 /*# sourceMappingURL=main.css.map */
+=======
+  font-family: "Barlow Semi Condensed", sans-serif; 
+}
+
+#id_mainLeaningOutput {
+	width:100%;
+	text-align: right;
+}
+
+.title {
+  color: #191716;
+  font-family: "Vollkorn SC", serif; 
+}
+
+/*# sourceMappingURL=main.css.map */
+
+.well {
+	height: 500px;
+	background-color: green;
+	overflow-y: scroll;
+}
+
+.articleTitles {
+	text-align: center;
+	font-size: xx-large;
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 15px;
+    border-radius: 5px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #4CAF50;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #4CAF50;
+    cursor: pointer;
+}

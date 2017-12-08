@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Bootstrap Stuff -->
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+    crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+
+<!-- End Bootstrap stuff -->
+
+<link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed|Vollkorn+SC" rel="stylesheet">
+
+<link rel="STYLESHEET" type="text/css" href="main.css">
+
+<html>
+
+<head>
+    <!-- Firebase stuff -->
+    <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-messaging.js"></script>
+    <script>
+        // Initialize Firebase
+        var config =
+            {
+                apiKey: "AIzaSyDqs1V4sQgKsXXe071909_aO_SLy5P7bpE",
+                authDomain: "newsapp-5d5a8.firebaseapp.com",
+                databaseURL: "https://newsapp-5d5a8.firebaseio.com",
+                projectId: "newsapp-5d5a8",
+                storageBucket: "newsapp-5d5a8.appspot.com",
+                messagingSenderId: "536892297743"
+            };
+
+        firebase.initializeApp(config);
+    </script>
+    <!-- End Firebase stuff -->
+</head>
+
+<body>
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Newsboy</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="home.html">Home</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div id="zoomMain" class="col-xs-12">
+                Text Size
+                <button id="zoomMainOut" class="glyphicon glyphicon-minus" height="75" width="75">
+                <button id="zoomMainIn" class="glyphicon glyphicon-plus" height="75" width="75">
+            </div>
+            <div class="col-sm-6">
+                <span id="id_mainArticleTitle" class="articleTitles"></span>
+                    <br> 
+                    by <span id="id_mainArticleAuthor"></span>
+                <div class="well">
+                    <span id="id_mainArticleLeaning"></span>
+                    <br>
+                    <br>
+                    <span id="id_mainArticleText"></span>
+                </div>
+                    <button class="btn btn-info btn-md" id="id_mainArticleThumbsUp">
+                        <span class="glyphicon glyphicon-thumbs-up"></span>
+                    </button>
+                <span id="id_mainArticleRatingUp"></span>
+                <button class="btn btn-danger btn-md" id="id_mainArticleThumbsDown">
+                            <span class="glyphicon glyphicon-thumbs-down"></span>
+                    </button>
+                <span id="id_mainArticleRatingDown"></span>
+                <div>
+
+                    <br>
+                    <div id="id_origSlideCtnr">
+                        <input type="range" min="1" max="5" value="3" class="slider" id="id_origLeaning">
+                        Left: <span id="id_mainLeft"></span>      Left Center: <span id="id_mainLeftCenter"></span>        Center: <span id="id_mainCenter"></span>        Right-Center: <span id="id_mainRightCenter"></span>       Right: <span id="id_mainRight"></span>
+                        <br>
+                        <span id="id_mainLeaningOutput">Center</span>
+                        <br>
+                        <button type="button" class="btn btn-primary" id="id_mainArticleLeaningButton">Submit Leaning</button>
+                    </div>
+                </div>
+                <!--
+                <div>
+                    <div class="form-group">
+                        <br>
+                        <label for="exampleTextarea">Submit a Comment BOYO</label>
+                        <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+                    </div>
+                    <button class="btn btn-primary">Submit Comment</button>
+                </div>
+            -->
+            </div>
+
+            <div class="col-sm-6">
+                <span id="id_compArticleTitle" class="articleTitles"></span>
+                <br> by <span id="id_compArticleAuthor"></span>
+                <div class="well">
+                    <span id="id_compArticleLeaning"></span>
+                    <br>
+                    <br>
+                    <span id="id_compArticleText"></span>
+                </div>
+                <button class="btn btn-info btn-md" id="id_compArticleThumbsUp">
+                        <span class="glyphicon glyphicon-thumbs-up"></span>
+                    </button>
+                <span id="id_compArticleRatingUp"></span>
+                <button class="btn btn-danger btn-md" id="id_compArticleThumbsDown">
+                            <span class="glyphicon glyphicon-thumbs-down"></span>
+                    </button>
+                <span id="id_compArticleRatingDown"></span>
+                <div>
+
+                    <br>
+                    <div id="id_refSlideCtnr">
+                        <input type="range" min="1" max="5" value="3" class="slider" id="id_refLeaning">
+                        Left: <span id="id_compLeft"></span>      Left Center: <span id="id_compLeftCenter"></span>        Center: <span id="id_compCenter"></span>        Right-Center: <span id="id_compRightCenter"></span>       Right: <span id="id_compRight"></span>
+                        <br>
+                        <span id="id_compLeaningOutput">Center</span>
+                        <br>
+                        <button type="button" class="btn btn-primary" id="id_compArticleLeaningButton">Submit Leaning</button>
+                    </div>
+                </div>
+                <!--
+                <div>
+                    <div class="form-group">
+                        <br>
+                        <label for="exampleTextarea">Submit a Comment, fair princess</label>
+                        <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+                    </div>
+                    <button class="btn btn-primary">Submit Comment</button>
+                </div>
+            -->
+            </div>
+        </div>
+        <br>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+        var mainArticleRef;
+        var compArticleRef;
+
+        // Perform these functions once the DOM has been loaded.
+        $(document).ready(function () {
+
+            $('#zoomMainIn').click(function () {
+
+                curSize = parseInt($('#id_mainArticleText').css('font-size')) + 3;
+
+                if (curSize <= 51) {
+                    $('#id_mainArticleText').css('font-size', curSize);
+                    $('#id_compArticleText').css('font-size', curSize);
+                }
+
+            });
+
+            $('#zoomMainOut').click(function () {
+
+                curSize = parseInt($('#id_mainArticleText').css('font-size')) - 3;
+
+                if (curSize >= 12) {
+                    $('#id_mainArticleText').css('font-size', curSize);
+                    $('#id_compArticleText').css('font-size', curSize);
+                }
+
+            });
+
+            var keyword = localStorage.getItem("theKeyword");
+
+            var ref = firebase.database().ref("Keywords/" + keyword);
+
+            ref.once("value").then(function (snapshot) {
+
+                var articlesWithKW = snapshot.val();
+                //console.log(articlesWithKW);
+
+                count = Object.keys(articlesWithKW).length;
+
+                //console.log("# of articles with KW: " + count);
+
+                var arrOfKeys = [];
+
+                for (var key in articlesWithKW) {
+                    console.log(key);
+                    console.log(articlesWithKW[key]);
+                    arrOfKeys.push(articlesWithKW[key]);
+                }
+
+                var randIndex = Math.floor(Math.random() * count);
+
+                var randomlySelectedKey = arrOfKeys[randIndex];
+
+                console.log("Randomly selected key is " + randomlySelectedKey);
+
+                var comparisonsRef = firebase.database().ref("Comparisons");
+                comparisonsRef.once("value").then(function (snapshot) {
+
+                    var arrOfMatchingComparisons = [];
+                    var allComparisons = snapshot.val();
+                    //console.log(allComparisons);
+                    // Find all comparisons with the randomly selected key
+                    for (var key in allComparisons) {
+
+                        //console.log(allComparisons[key]);
+
+                        var count2 = Object.keys(allComparisons[key]).length;
+                        // Find all instances where there is a matching 
+                        for (var i = 0; i < count2; i++) {
+                            if (allComparisons[key][i] === randomlySelectedKey) {
+                                arrOfMatchingComparisons.push(key);
+                            }
+                        }
+                    }
+
+                    //console.log("All the comparison refs with the matching key: " + arrOfMatchingComparisons);
+
+                    randIndex = Math.floor(Math.random() * arrOfMatchingComparisons.length);
+
+                    //console.log("Randomly selected index in array: " + randIndex);
+                    //console.log(allComparisons[arrOfMatchingComparisons[randIndex]]);
+                    var mainArticleRef = firebase.database().ref("Articles/" + allComparisons[arrOfMatchingComparisons[randIndex]][0]);
+                    var compArticleRef = firebase.database().ref("Articles/" + allComparisons[arrOfMatchingComparisons[randIndex]][1]);
+
+                    var mainArticlePath = "Articles/" + allComparisons[arrOfMatchingComparisons[randIndex]][0] + "/";
+                    var compArticlePath = "Articles/" + allComparisons[arrOfMatchingComparisons[randIndex]][1] + "/";
+
+                    setValueFromKeysWithID(mainArticlePath, "Title", "id_mainArticleTitle");
+                    setValueFromKeysWithID(mainArticlePath, "Author", "id_mainArticleAuthor");
+                    setValueFromKeysWithID(mainArticlePath, "Text", "id_mainArticleText");
+                    setValueFromKeysWithID(mainArticlePath + "Rating", "Thumbs Up", "id_mainArticleRatingUp");
+                    setValueFromKeysWithID(mainArticlePath + "Rating", "Thumbs Down", "id_mainArticleRatingDown");
+                    
+                    setValueFromKeysWithID(compArticlePath, "Title", "id_compArticleTitle");
+                    setValueFromKeysWithID(compArticlePath, "Author", "id_compArticleAuthor");
+                    setValueFromKeysWithID(compArticlePath, "Text", "id_compArticleText");
+                    setValueFromKeysWithID(compArticlePath + "Rating", "Thumbs Up", "id_compArticleRatingUp");
+                    setValueFromKeysWithID(compArticlePath + "Rating", "Thumbs Down", "id_compArticleRatingDown");
+
+                    setValueFromKeysWithID(mainArticlePath + "Political Leaning", "Left", "id_mainLeft");
+                    setValueFromKeysWithID(mainArticlePath + "Political Leaning", "Center Left", "id_mainLeftCenter");
+                    setValueFromKeysWithID(mainArticlePath + "Political Leaning", "Center", "id_mainCenter");
+                    setValueFromKeysWithID(mainArticlePath + "Political Leaning", "Center Right", "id_mainRightCenter");
+                    setValueFromKeysWithID(mainArticlePath + "Political Leaning", "Right", "id_mainRight");
+
+                    setValueFromKeysWithID(compArticlePath + "Political Leaning", "Left", "id_compLeft");
+                    setValueFromKeysWithID(compArticlePath + "Political Leaning", "Center Left", "id_compLeftCenter");
+                    setValueFromKeysWithID(compArticlePath + "Political Leaning", "Center", "id_compCenter");
+                    setValueFromKeysWithID(compArticlePath + "Political Leaning", "Center Right", "id_compRightCenter");
+                    setValueFromKeysWithID(compArticlePath + "Political Leaning", "Right", "id_compRight");
+
+                    mainArticleRef = allComparisons[arrOfMatchingComparisons[randIndex]][0];
+                    compArticleRef = allComparisons[arrOfMatchingComparisons[randIndex]][1];
+                    //console.log("Asynch main: " + mainArticleRef);
+                    //console.log("Asynch comp: " + compArticleRef);
+
+                    $('#id_mainArticleThumbsUp').click(function () {
+                        $("#id_mainArticleRatingUp").text(parseInt($("#id_mainArticleRatingUp").text()) + 1);
+                        incrementSpecificPath("Articles/" + mainArticleRef + "/Rating", "Thumbs Up");
+                        var button = "#id_mainArticleThumbsUp";
+                        var accompanyButton = "#id_mainArticleThumbsDown";
+                        disableButton(button);
+                        disableButton(accompanyButton);
+                    });
+
+                    $('#id_mainArticleThumbsDown').click(function () {
+                        $("#id_mainArticleRatingDown").text(parseInt($("#id_mainArticleRatingDown").text()) + 1);
+                        incrementSpecificPath("Articles/" + mainArticleRef + "/Rating", "Thumbs Down");
+                        var button = "#id_mainArticleThumbsUp";
+                        var accompanyButton = "#id_mainArticleThumbsDown";
+                        disableButton(button);
+                        disableButton(accompanyButton);
+                    });
+
+                    $('#id_compArticleThumbsUp').click(function () {
+                        $("#id_compArticleRatingUp").text(parseInt($("#id_compArticleRatingUp").text()) + 1);
+                        incrementSpecificPath("Articles/" + compArticleRef + "/Rating", "Thumbs Up");
+                        var button = "#id_compArticleThumbsUp";
+                        var accompanyButton = "#id_compArticleThumbsDown";
+                        disableButton(button);
+                        disableButton(accompanyButton);
+                    });
+
+                    $('#id_compArticleThumbsDown').click(function () {
+                        $("#id_compArticleRatingDown").text(parseInt($("#id_compArticleRatingDown").text()) + 1);
+                        incrementSpecificPath("Articles/" + compArticleRef + "/Rating", "Thumbs Down");
+                        var button = "#id_compArticleThumbsUp";
+                        var accompanyButton = "#id_compArticleThumbsDown";
+                        disableButton(button);
+                        disableButton(accompanyButton);
+                    });
+
+                    $("#id_mainArticleLeaningButton").click(function() {
+                        var stringReplace = "#id_mainLeaningOutput";
+                        var leaningText = $(stringReplace).html();
+                        incrementSpecificPath("Articles/" + mainArticleRef + "/Political Leaning", leaningText);
+                        var button = "#id_mainArticleLeaningButton";
+                        disableButton(button);
+                        disableButton("#id_origLeaning");
+                    });
+
+                    $("#id_compArticleLeaningButton").click(function() {
+                        var stringReplace = "#id_compLeaningOutput";
+                        var leaningText = $(stringReplace).html();
+                        incrementSpecificPath("Articles/" + compArticleRef + "/Political Leaning", leaningText);
+                        var button = "#id_compArticleLeaningButton";
+                        disableButton(button);
+                        disableButton("#id_refLeaning");
+                    });
+
+                    function checkToDisplayURL(bool_has)
+
+                    function updateThumbsDown(buttonID, articleType) {
+            var articleRef;
+
+            if (articleType === 'main') {
+                articleRef = mainArticleRef;
+            }
+            else {
+                articleRef = compArticleRef;
+            }
+            console.log("THE ARTICLE REF ====== " + articleRef);
+            incrementSpecificPath("Articles/" + articleRef + "/Rating", "Thumbs Down");
+            var button = "#" + buttonID + "ThumbsDown";
+            var accompanyButton = "#" + buttonID + "ThumbsUp";
+            disableButton(button);
+            disableButton(accompanyButton);
+        }
+
+
+                    // TODO
+                    // Add all of the leaning submissions (Of # users, # said it was left, # said it was center left, etc...)
+                    // Provide user the source of the article after they submit their evaluations
+                });
+
+            });
+
+        });
+
+        // TODO
+        // Condense these two functions into one
+
+        var originalSlider = document.getElementById("id_origLeaning");
+        var comparisonSlider = document.getElementById("id_refLeaning");
+
+        originalSlider.oninput = function () {
+            var textReplacement;
+
+            if (this.value == 1) {
+                textReplacement = "Left";
+            }
+            else if (this.value == 2) {
+                textReplacement = "Center Left";
+            }
+            else if (this.value == 3) {
+                textReplacement = "Center";
+            }
+            else if (this.value == 4) {
+                textReplacement = "Center Right";
+            }
+            else {
+                textReplacement = "Right";
+            }
+
+            $("#id_mainLeaningOutput").text(textReplacement);
+        }
+
+        comparisonSlider.oninput = function () {
+            var textReplacement;
+
+            if (this.value == 1) {
+                textReplacement = "Left";
+            }
+            else if (this.value == 2) {
+                textReplacement = "Center Left";
+            }
+            else if (this.value == 3) {
+                textReplacement = "Center";
+            }
+            else if (this.value == 4) {
+                textReplacement = "Center Right";
+            }
+            else {
+                textReplacement = "Right";
+            }
+
+            $("#id_compLeaningOutput").text(textReplacement);
+        }
+
+        function getValuesFromKeys(parentPath, childPath) {
+            var defer = $.Deferred();
+
+            var ref = firebase.database().ref(parentPath);
+
+            ref.once('value', function (snapshot) {
+                var value = snapshot.child(childPath).val();
+
+                defer.resolve(value);
+            });
+
+            return defer.promise();
+        }
+
+        function setValueFromKeysWithID(parentPath, childPath, domID) {
+            getValuesFromKeys(parentPath, childPath).then(function (valueRetrieved) { $("#" + domID).html(valueRetrieved); });
+        }
+
+        // TODO
+        // Condense
+        // TODO
+        // Remove hard coded paths
+        function updateThumbsUp(buttonID, articleType) {
+            var articleRef;
+
+            if (articleType === 'main') {
+                articleRef = mainArticleRef;
+            }
+            else {
+                articleRef = compArticleRef;
+            }
+            console.log("THE ARTICLE REF ====== " + articleRef);
+            incrementSpecificPath("Articles/" + articleRef + "/Rating", "Thumbs Up");
+            var button = "#" + buttonID + "ThumbsUp";
+            var accompanyButton = "#" + buttonID + "ThumbsDown";
+            disableButton(button);
+            disableButton(accompanyButton);
+        }
+
+        function disableButton(buttonID) {
+            $(buttonID).addClass('disabled'); // Disables visually
+            $(buttonID).prop('disabled', true); // Disables visually + functionally
+        }
+
+        function incrementSpecificPath(parentPath, childName) {
+            var ref = firebase.database().ref(parentPath);
+
+            ref.once("value").then(function (snapshot) {
+                var val = snapshot.child(childName).val() + 1;
+                var specificRef = firebase.database().ref(parentPath + "/" + childName);
+                specificRef.set(val);
+            });
+        }
+
+</script>
