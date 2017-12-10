@@ -1,6 +1,7 @@
 import newspaper
 from newspaper import Article
-from make_comparison import Comparison
+from make_comparison import FindComparisons
+from update_firebase import UpdateFirebase
 
 class WebScraper():
 
@@ -19,9 +20,9 @@ class WebScraper():
 		# Sequence to get articles and scrape information
 		self._getURLs()
 		self._getDataInformatics()
-		self.compare = Comparison(self.articles)
+		self.comparison = FindComparisons(self.articles)
 
-		
+		self.upfb = UpdateFirebase(self.comparison.getComparisons())
 		
 		
 	def _getURLs(self):
@@ -29,7 +30,7 @@ class WebScraper():
 		# Find all articles on each website and add URLs to list
 		for website in self.websites:
 			
-			paper = newspaper.build(website)
+			paper = newspaper.build(website, memoize_articles=False)
 			
 			for article in paper.articles:
 			
