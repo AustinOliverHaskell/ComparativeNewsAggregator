@@ -135,6 +135,7 @@ function endRow()
 function selectCookie(keyword)
 {
 	console.log(keyword + " saved to cookie");
-	document.cookie = keyword;
+	localStorage.setItem("keyword", keyword);
+	//document.cookie = keyword;
 	window.location = REDIRECT_PAGE;
 }

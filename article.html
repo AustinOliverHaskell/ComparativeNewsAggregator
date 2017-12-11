@@ -192,7 +192,8 @@
 
             });
 
-            var keyword = document.cookie;//localStorage.getItem("theKeyword");
+            var keyword = localStorage.getItem("keyword");
+            console.log(keyword);
 
             var ref = firebase.database().ref("Keywords/" + keyword);
 
