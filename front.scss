@@ -4,22 +4,45 @@ $grey: rgba(96, 91, 86, 1);
 $red: rgba(242, 149, 89, 1);
 $blue: rgba(141, 153, 174, 1);
 
+// Font pallete
+$titleFont: 'Vollkorn SC', serif;
+$bodyFont:  'Barlow Semi Condensed', sans-serif;
+
+body, html, .container-fluid {
+     height: 100%;
+     margin: 0px;
+     padding: 0px;
+}
+
 
 body {
 	background-color: $white;
 	color: $black;
 	height: 100%;
+	margin: 0px;
+    padding: 0px;
 }
 
 .tile {
-	background-color: $grey;
-	float: left;
+	background-color: $white;
 	text-align: center;
-
+	margin-bottom: 2px;
+	border-left: 3px;
+	border-color: $white;
+	height: 200px;
+	font-family: $titleFont;
+	font-size: 26px;
+	padding-top: 40px;
 }
 
 #tiles {
 	height: 100%;
 	background-color: $white;
+}
+
+.row {
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
 }
 
