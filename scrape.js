@@ -5,7 +5,8 @@ const columns = 6;
 const rows = 8;
 var rowValue = 1;
 
-const REDIRECT_PAGE = "Compare.html";
+const REDIRECT_PAGE = "article.html";
+const ERROR_PAGE    = "error.html";
 
 var keywords = [];
 
@@ -23,7 +24,15 @@ function scrapeKeywords()
             var value = childSnapshot.val();
             keywords.push(value);
         });
-		oCreateTiles();
+
+        if (keywords.length > 0)
+        {
+			oCreateTiles();
+		}
+		else
+		{
+			window.location = ERROR_PAGE;
+		}
 	});
 }
 
