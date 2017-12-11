@@ -9,7 +9,7 @@ class UpdateFirebase():
 		self.entries = []
 		self.keyBois = []
 		
-		self.rawComparisons = articles
+		self.rawComparisons = articles[0:100]
 		self.articleHashes = []
 		self.comparisonHashes = []
 
@@ -64,7 +64,8 @@ class UpdateFirebase():
 	def _pushEntries(self):
 		
 		for comparison in self.entries:
-		
+			del self.articleHashes[:]
+			self.articleHashes = []
 			for article in comparison:
 				
 				# Post article to database
@@ -72,8 +73,9 @@ class UpdateFirebase():
 				
 			# Update the comparisons for each article
 			self._updateComparisons()
-			self._updateKeyBois()
-			self._updateKeywords()
+		
+		self._updateKeyBois()
+		self._updateKeywords()	
 
 	def _updateComparisons(self):
 	
@@ -85,7 +87,9 @@ class UpdateFirebase():
 		self.database.patch("", {"Keybois": self.keyBois})
 	
 	def _updateKeywords(self):
-	
+		print(len(self.comparisonHashes))
+		print(len(self.rawComparisons))
+
 		for hash_id, comparison in enumerate(self.rawComparisons, start = 0):
 	
 			keywords = comparison.getMatchingKeywords()

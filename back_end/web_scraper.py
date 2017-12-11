@@ -42,7 +42,7 @@ class WebScraper():
 	def _getDataInformatics(self):
 	
 		# For each article URL, scape web and formulate database response
-		for id, url in enumerate(self.urls, 1):
+		for id, url in enumerate(self.urls[0:100], 1):
 
 			self._formulateDatabaseResponse(id, url)
 			
