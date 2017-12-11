@@ -190,14 +190,14 @@
 
             });
 
-            var keyword = localStorage.getItem("theKeyword");
+            var keyword = "eclipse";//localStorage.getItem("theKeyword");
 
             var ref = firebase.database().ref("Keywords/" + keyword);
 
             ref.once("value").then(function (snapshot) {
 
                 var articlesWithKW = snapshot.val();
-                //console.log(articlesWithKW);
+                console.log(articlesWithKW);
 
                 count = Object.keys(articlesWithKW).length;
 
@@ -206,7 +206,6 @@
                 var arrOfKeys = [];
 
                 for (var key in articlesWithKW) {
-                    console.log(key);
                     console.log(articlesWithKW[key]);
                     arrOfKeys.push(articlesWithKW[key]);
                 }
@@ -217,11 +216,12 @@
 
                 console.log("Randomly selected key is " + randomlySelectedKey);
 
-                var comparisonsRef = firebase.database().ref("Comparisons");
+                var comparisonsRef = firebase.database().ref("Comparisons/" + randomlySelectedKey);
                 comparisonsRef.once("value").then(function (snapshot) {
 
                     var arrOfMatchingComparisons = [];
                     var allComparisons = snapshot.val();
+                    console.log(allComparisons);
                     //console.log(allComparisons);
                     // Find all comparisons with the randomly selected key
                     for (var key in allComparisons) {
@@ -321,6 +321,22 @@
                         var button = "#id_mainArticleLeaningButton";
                         disableButton(button);
                         disableButton("#id_origLeaning");
+
+                        if (leaningText === "Left") {
+                            $("#id_mainLeft").text(parseInt($("#id_mainLeft").text()) + 1);
+                        }
+                        else if (leaningText === "Center Left") {
+                            $("#id_mainLeftCenter").text(parseInt($("#id_mainLeftCenter").text()) + 1);
+                        }
+                        else if (leaningText === "Center") {
+                            $("#id_mainCenter").text(parseInt($("#id_mainCenter").text()) + 1);
+                        }
+                        else if (leaningText === "Center Right") {
+                            $("#id_mainRightCenter").text(parseInt($("#id_mainRightCenter").text()) + 1);
+                        }
+                        else {
+                            $("#id_mainRight").text(parseInt($("#id_mainRight").text()) + 1);
+                        }
                     });
 
                     $("#id_compArticleLeaningButton").click(function() {
@@ -330,6 +346,22 @@
                         var button = "#id_compArticleLeaningButton";
                         disableButton(button);
                         disableButton("#id_refLeaning");
+
+                        if (leaningText === "Left") {
+                            $("#id_compLeft").text(parseInt($("#id_compLeft").text()) + 1);
+                        }
+                        else if (leaningText === "Center Left") {
+                            $("#id_compLeftCenter").text(parseInt($("#id_compLeftCenter").text()) + 1);
+                        }
+                        else if (leaningText === "Center") {
+                            $("#id_compCenter").text(parseInt($("#id_compCenter").text()) + 1);
+                        }
+                        else if (leaningText === "Center Right") {
+                            $("#id_compRightCenter").text(parseInt($("#id_compRightCenter").text()) + 1);
+                        }
+                        else {
+                            $("#id_compRight").text(parseInt($("#id_compRight").text()) + 1);
+                        }
                     });
 
                     function updateThumbsDown(buttonID, articleType) {
