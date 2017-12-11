@@ -75,8 +75,9 @@
                 <span id="id_mainArticleTitle" class="articleTitles"></span>
                     <br> 
                     by <span id="id_mainArticleAuthor"></span>
+                    <br>
+                    <span id="id_mainArticleURL"></span>
                 <div class="well">
-                    <span id="id_mainArticleLeaning"></span>
                     <br>
                     <br>
                     <span id="id_mainArticleText"></span>
@@ -116,8 +117,9 @@
             <div class="col-sm-6">
                 <span id="id_compArticleTitle" class="articleTitles"></span>
                 <br> by <span id="id_compArticleAuthor"></span>
+                <br>
+                <span id="id_compArticleURL"></span>
                 <div class="well">
-                    <span id="id_compArticleLeaning"></span>
                     <br>
                     <br>
                     <span id="id_compArticleText"></span>
@@ -190,7 +192,7 @@
 
             });
 
-            var keyword = "eclipse";//localStorage.getItem("theKeyword");
+            var keyword = document.cookie;//localStorage.getItem("theKeyword");
 
             var ref = firebase.database().ref("Keywords/" + keyword);
 
@@ -219,9 +221,16 @@
                 var comparisonsRef = firebase.database().ref("Comparisons/" + randomlySelectedKey);
                 comparisonsRef.once("value").then(function (snapshot) {
 
+                    var b_mainRating = false;
+                    var b_compRating = false;
+                    var b_mainLeaning = false; 
+                    var b_compLeaning = false;
+
                     var arrOfMatchingComparisons = [];
                     var allComparisons = snapshot.val();
                     console.log(allComparisons);
+
+                    var randIndexOfMain = Math.floor(Math.random() * allComparisons.length);
                     console.log(allComparisons[0]);
                     console.log(allComparisons[1]);
                     
@@ -283,6 +292,12 @@
                     //console.log("Asynch comp: " + compArticleRef);
 
                     $('#id_mainArticleThumbsUp').click(function () {
+                        b_mainRating = true;
+                        if ((b_mainRating === true) && (b_mainLeaning))
+                        {
+                            setValueFromKeysWithID(mainArticlePath, "URL", "id_mainArticleURL");
+                        }
+
                         $("#id_mainArticleRatingUp").text(parseInt($("#id_mainArticleRatingUp").text()) + 1);
                         incrementSpecificPath("Articles/" + mainArticleRef + "/Rating", "UP");
                         var button = "#id_mainArticleThumbsUp";
@@ -292,6 +307,12 @@
                     });
 
                     $('#id_mainArticleThumbsDown').click(function () {
+                        b_mainRating = true;
+                        if ((b_mainRating === true) && (b_mainLeaning))
+                        {
+                            setValueFromKeysWithID(mainArticlePath, "URL", "id_mainArticleURL");
+                        }
+
                         $("#id_mainArticleRatingDown").text(parseInt($("#id_mainArticleRatingDown").text()) + 1);
                         incrementSpecificPath("Articles/" + mainArticleRef + "/Rating", "DOWN");
                         var button = "#id_mainArticleThumbsUp";
@@ -301,6 +322,11 @@
                     });
 
                     $('#id_compArticleThumbsUp').click(function () {
+                        b_compRating = true;
+                        if ((b_compRating === true) && (b_compLeaning))
+                        {
+                            setValueFromKeysWithID(compArticlePath, "URL", "id_compArticleURL");
+                        }
                         $("#id_compArticleRatingUp").text(parseInt($("#id_compArticleRatingUp").text()) + 1);
                         incrementSpecificPath("Articles/" + compArticleRef + "/Rating", "UP");
                         var button = "#id_compArticleThumbsUp";
@@ -310,6 +336,11 @@
                     });
 
                     $('#id_compArticleThumbsDown').click(function () {
+                        b_compRating = true;
+                        if ((b_mainRating === true) && (b_compLeaning))
+                        {
+                            setValueFromKeysWithID(compArticlePath, "URL", "id_compArticleURL");
+                        }
                         $("#id_compArticleRatingDown").text(parseInt($("#id_compArticleRatingDown").text()) + 1);
                         incrementSpecificPath("Articles/" + compArticleRef + "/Rating", "DOWN");
                         var button = "#id_compArticleThumbsUp";
@@ -319,6 +350,12 @@
                     });
 
                     $("#id_mainArticleLeaningButton").click(function() {
+                        b_mainLeaning = true;
+                        if ((b_mainRating === true) && (b_mainLeaning))
+                        {
+                            setValueFromKeysWithID(mainArticlePath, "URL", "id_mainArticleURL");
+                        }
+
                         var stringReplace = "#id_mainLeaningOutput";
                         var leaningText = $(stringReplace).html();
                         incrementSpecificPath("Articles/" + mainArticleRef + "/Leaning", leaningText);
@@ -344,6 +381,12 @@
                     });
 
                     $("#id_compArticleLeaningButton").click(function() {
+                        b_compLeaning = true;
+                        if ((b_compRating === true) && (b_compLeaning))
+                        {
+                            setValueFromKeysWithID(compArticlePath, "URL", "id_compArticleURL");
+                        }
+
                         var stringReplace = "#id_compLeaningOutput";
                         var leaningText = $(stringReplace).html();
                         incrementSpecificPath("Articles/" + compArticleRef + "/Leaning", leaningText);
