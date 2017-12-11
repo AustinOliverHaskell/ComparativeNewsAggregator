@@ -1,9 +1,11 @@
 // Scrape Keywords
 
 const numberOfTiles = 30;
-const columns = 5;
-const rows = 3;
+const columns = 6;
+const rows = 8;
 var rowValue = 1;
+
+const REDIRECT_PAGE = "Compare.html";
 
 var keywords = [];
 
@@ -14,75 +16,71 @@ function scrapeKeywords()
 	var database = firebase.database();
 
 
-	firebase.database().ref('Keybois').once('value').then(function(snapshot){
-
-		snapshot.forEach(function (childSnapshot) {
-
+	firebase.database().ref('Keybois').once('value').then(function(snapshot)
+	{
+		snapshot.forEach(function (childSnapshot)
+		{
             var value = childSnapshot.val();
             keywords.push(value);
         });
 		oCreateTiles();
 	});
-
-	// When the keywords have been populated
-	// create the tiles
 }
-
-/*function createTiles()
-{
-	var id = 0;
-	for (var i = 0; i < rows; i++)
-	{
-		var completeRow = 10;
-
-		$("#tiles").append(addSpace());
-		$("#tiles").append(addSpace());
-		while(completeRow > 0)
-		{
-			if (keywords.length <= id)
-			{
-				//break;
-			}
-
-			var value = 4;
-
-			completeRow -= value+2;
-
-			var colorScheme = Math.floor(Math.random()*4)
-
-			$("#tiles").append(initTile(id, value, "Untitled"));
-
-			$("#"+id+"").css("background-color", colors[colorScheme]);
-
-			// Add the function to select a cookie
-			$("#"+id).click(function() {
-				selectCookie($(this).text());
-			});
-
-			if (colorScheme === 3)
-			{
-				$("#"+id+"").css("color", colors[2]);
-			}
-
-			id++;
-		}
-	}
-}*/
 
 function oCreateTiles()
 {
 	var id = 0;
 	for (var i = 0; i < rows; i++)
 	{
+		$("#tiles").append(startRow());
 		for (var q = 0; q < columns; q++)
 		{
-			var colorScheme = Math.floor(Math.random()*4)
+			var colorScheme = Math.floor(Math.random()*3)
 
 			if (id < keywords.length)
 			{
-				$("#tiles").append(addSpace());
-				$("#tiles").append(initTile(id, 4, keywords[id]));
-				$("#tiles").append(addSpace());
+
+				// Figure out if we need to make a double tile
+				var join = Math.floor(Math.random() * 10);
+				if (join === 5)
+				{
+					$("#tiles").append(initTile(id, 4, keywords[id]));
+
+					$("#"+id+"").css("background-color", colors[colorScheme]);
+
+					// Add the function to select a cookie
+					$("#"+id).click(function() {
+						selectCookie($(this).text());
+					});
+
+					if (colorScheme === 2)
+					{
+						$("#"+id+"").css("color", colors[3]);
+					}
+
+					for (; q < columns-2; q++)
+					{
+						// Duplicate code, me so sorry
+						$("#tiles").append(initTile(id, 2, keywords[id]));
+
+						$("#"+id+"").css("background-color", colors[colorScheme]);
+
+						// Add the function to select a cookie
+						$("#"+id).click(function() {
+							selectCookie($(this).text());
+						});
+
+						if (colorScheme === 2)
+						{
+							$("#"+id+"").css("color", colors[3]);
+						}
+
+						id++;
+					}
+					break;
+				}
+			
+				$("#tiles").append(initTile(id, 2, keywords[id]));
 
 				$("#"+id+"").css("background-color", colors[colorScheme]);
 
@@ -91,14 +89,16 @@ function oCreateTiles()
 					selectCookie($(this).text());
 				});
 
-				if (colorScheme === 3)
+				if (colorScheme === 2)
 				{
-					$("#"+id+"").css("color", colors[2]);
+					$("#"+id+"").css("color", colors[3]);
 				}
+
 			}
 
 			id++;
 		}
+		$("#tiles").append(endRow());
 	}
 }
 
@@ -113,8 +113,19 @@ function addSpace()
 	return "<div class='tile col-xs-1'> </div>";
 }
 
+function startRow()
+{
+	return "<div class='row'>";
+}
+
+function endRow()
+{
+	return "</div>";
+}
+
 function selectCookie(keyword)
 {
 	console.log(keyword + " saved to cookie");
 	document.cookie = keyword;
+	window.location = REDIRECT_PAGE;
 }
