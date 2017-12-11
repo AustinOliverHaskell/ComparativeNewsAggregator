@@ -214,7 +214,7 @@
 
                 var randomlySelectedKey = arrOfKeys[randIndex];
 
-                console.log("Randomly selected key is " + randomlySelectedKey);
+                console.log("Randomly selected comparison is " + randomlySelectedKey);
 
                 var comparisonsRef = firebase.database().ref("Comparisons/" + randomlySelectedKey);
                 comparisonsRef.once("value").then(function (snapshot) {
@@ -222,8 +222,11 @@
                     var arrOfMatchingComparisons = [];
                     var allComparisons = snapshot.val();
                     console.log(allComparisons);
-                    //console.log(allComparisons);
+                    console.log(allComparisons[0]);
+                    console.log(allComparisons[1]);
+                    
                     // Find all comparisons with the randomly selected key
+                    /*
                     for (var key in allComparisons) {
 
                         //console.log(allComparisons[key]);
@@ -236,51 +239,52 @@
                             }
                         }
                     }
+                    */
 
                     //console.log("All the comparison refs with the matching key: " + arrOfMatchingComparisons);
 
-                    randIndex = Math.floor(Math.random() * arrOfMatchingComparisons.length);
+                    //randIndex = Math.floor(Math.random() * arrOfMatchingComparisons.length);
 
                     //console.log("Randomly selected index in array: " + randIndex);
                     //console.log(allComparisons[arrOfMatchingComparisons[randIndex]]);
-                    var mainArticleRef = firebase.database().ref("Articles/" + allComparisons[arrOfMatchingComparisons[randIndex]][0]);
-                    var compArticleRef = firebase.database().ref("Articles/" + allComparisons[arrOfMatchingComparisons[randIndex]][1]);
+                    var mainArticleRef = firebase.database().ref("Articles/" + allComparisons[0]);
+                    var compArticleRef = firebase.database().ref("Articles/" + allComparisons[1]);
 
-                    var mainArticlePath = "Articles/" + allComparisons[arrOfMatchingComparisons[randIndex]][0] + "/";
-                    var compArticlePath = "Articles/" + allComparisons[arrOfMatchingComparisons[randIndex]][1] + "/";
+                    var mainArticlePath = "Articles/" + allComparisons[0] + "/";
+                    var compArticlePath = "Articles/" + allComparisons[1] + "/";
 
                     setValueFromKeysWithID(mainArticlePath, "Title", "id_mainArticleTitle");
                     setValueFromKeysWithID(mainArticlePath, "Author", "id_mainArticleAuthor");
                     setValueFromKeysWithID(mainArticlePath, "Text", "id_mainArticleText");
-                    setValueFromKeysWithID(mainArticlePath + "Rating", "Thumbs Up", "id_mainArticleRatingUp");
-                    setValueFromKeysWithID(mainArticlePath + "Rating", "Thumbs Down", "id_mainArticleRatingDown");
+                    setValueFromKeysWithID(mainArticlePath + "Rating", "UP", "id_mainArticleRatingUp");
+                    setValueFromKeysWithID(mainArticlePath + "Rating", "DOWN", "id_mainArticleRatingDown");
                     
                     setValueFromKeysWithID(compArticlePath, "Title", "id_compArticleTitle");
                     setValueFromKeysWithID(compArticlePath, "Author", "id_compArticleAuthor");
                     setValueFromKeysWithID(compArticlePath, "Text", "id_compArticleText");
-                    setValueFromKeysWithID(compArticlePath + "Rating", "Thumbs Up", "id_compArticleRatingUp");
-                    setValueFromKeysWithID(compArticlePath + "Rating", "Thumbs Down", "id_compArticleRatingDown");
+                    setValueFromKeysWithID(compArticlePath + "Rating", "UP", "id_compArticleRatingUp");
+                    setValueFromKeysWithID(compArticlePath + "Rating", "DOWN", "id_compArticleRatingDown");
 
-                    setValueFromKeysWithID(mainArticlePath + "Political Leaning", "Left", "id_mainLeft");
-                    setValueFromKeysWithID(mainArticlePath + "Political Leaning", "Center Left", "id_mainLeftCenter");
-                    setValueFromKeysWithID(mainArticlePath + "Political Leaning", "Center", "id_mainCenter");
-                    setValueFromKeysWithID(mainArticlePath + "Political Leaning", "Center Right", "id_mainRightCenter");
-                    setValueFromKeysWithID(mainArticlePath + "Political Leaning", "Right", "id_mainRight");
+                    setValueFromKeysWithID(mainArticlePath + "Leaning", "Left", "id_mainLeft");
+                    setValueFromKeysWithID(mainArticlePath + "Leaning", "Center Left", "id_mainLeftCenter");
+                    setValueFromKeysWithID(mainArticlePath + "Leaning", "Center", "id_mainCenter");
+                    setValueFromKeysWithID(mainArticlePath + "Leaning", "Center Right", "id_mainRightCenter");
+                    setValueFromKeysWithID(mainArticlePath + "Leaning", "Right", "id_mainRight");
 
-                    setValueFromKeysWithID(compArticlePath + "Political Leaning", "Left", "id_compLeft");
-                    setValueFromKeysWithID(compArticlePath + "Political Leaning", "Center Left", "id_compLeftCenter");
-                    setValueFromKeysWithID(compArticlePath + "Political Leaning", "Center", "id_compCenter");
-                    setValueFromKeysWithID(compArticlePath + "Political Leaning", "Center Right", "id_compRightCenter");
-                    setValueFromKeysWithID(compArticlePath + "Political Leaning", "Right", "id_compRight");
+                    setValueFromKeysWithID(compArticlePath + "Leaning", "Left", "id_compLeft");
+                    setValueFromKeysWithID(compArticlePath + "Leaning", "Center Left", "id_compLeftCenter");
+                    setValueFromKeysWithID(compArticlePath + "Leaning", "Center", "id_compCenter");
+                    setValueFromKeysWithID(compArticlePath + "Leaning", "Center Right", "id_compRightCenter");
+                    setValueFromKeysWithID(compArticlePath + "Leaning", "Right", "id_compRight");
 
-                    mainArticleRef = allComparisons[arrOfMatchingComparisons[randIndex]][0];
-                    compArticleRef = allComparisons[arrOfMatchingComparisons[randIndex]][1];
+                    mainArticleRef = allComparisons[0];
+                    compArticleRef = allComparisons[1];
                     //console.log("Asynch main: " + mainArticleRef);
                     //console.log("Asynch comp: " + compArticleRef);
 
                     $('#id_mainArticleThumbsUp').click(function () {
                         $("#id_mainArticleRatingUp").text(parseInt($("#id_mainArticleRatingUp").text()) + 1);
-                        incrementSpecificPath("Articles/" + mainArticleRef + "/Rating", "Thumbs Up");
+                        incrementSpecificPath("Articles/" + mainArticleRef + "/Rating", "UP");
                         var button = "#id_mainArticleThumbsUp";
                         var accompanyButton = "#id_mainArticleThumbsDown";
                         disableButton(button);
@@ -289,7 +293,7 @@
 
                     $('#id_mainArticleThumbsDown').click(function () {
                         $("#id_mainArticleRatingDown").text(parseInt($("#id_mainArticleRatingDown").text()) + 1);
-                        incrementSpecificPath("Articles/" + mainArticleRef + "/Rating", "Thumbs Down");
+                        incrementSpecificPath("Articles/" + mainArticleRef + "/Rating", "DOWN");
                         var button = "#id_mainArticleThumbsUp";
                         var accompanyButton = "#id_mainArticleThumbsDown";
                         disableButton(button);
@@ -298,7 +302,7 @@
 
                     $('#id_compArticleThumbsUp').click(function () {
                         $("#id_compArticleRatingUp").text(parseInt($("#id_compArticleRatingUp").text()) + 1);
-                        incrementSpecificPath("Articles/" + compArticleRef + "/Rating", "Thumbs Up");
+                        incrementSpecificPath("Articles/" + compArticleRef + "/Rating", "UP");
                         var button = "#id_compArticleThumbsUp";
                         var accompanyButton = "#id_compArticleThumbsDown";
                         disableButton(button);
@@ -307,7 +311,7 @@
 
                     $('#id_compArticleThumbsDown').click(function () {
                         $("#id_compArticleRatingDown").text(parseInt($("#id_compArticleRatingDown").text()) + 1);
-                        incrementSpecificPath("Articles/" + compArticleRef + "/Rating", "Thumbs Down");
+                        incrementSpecificPath("Articles/" + compArticleRef + "/Rating", "DOWN");
                         var button = "#id_compArticleThumbsUp";
                         var accompanyButton = "#id_compArticleThumbsDown";
                         disableButton(button);
@@ -317,7 +321,7 @@
                     $("#id_mainArticleLeaningButton").click(function() {
                         var stringReplace = "#id_mainLeaningOutput";
                         var leaningText = $(stringReplace).html();
-                        incrementSpecificPath("Articles/" + mainArticleRef + "/Political Leaning", leaningText);
+                        incrementSpecificPath("Articles/" + mainArticleRef + "/Leaning", leaningText);
                         var button = "#id_mainArticleLeaningButton";
                         disableButton(button);
                         disableButton("#id_origLeaning");
@@ -342,7 +346,7 @@
                     $("#id_compArticleLeaningButton").click(function() {
                         var stringReplace = "#id_compLeaningOutput";
                         var leaningText = $(stringReplace).html();
-                        incrementSpecificPath("Articles/" + compArticleRef + "/Political Leaning", leaningText);
+                        incrementSpecificPath("Articles/" + compArticleRef + "/Leaning", leaningText);
                         var button = "#id_compArticleLeaningButton";
                         disableButton(button);
                         disableButton("#id_refLeaning");
@@ -374,7 +378,7 @@
                 articleRef = compArticleRef;
             }
             console.log("THE ARTICLE REF ====== " + articleRef);
-            incrementSpecificPath("Articles/" + articleRef + "/Rating", "Thumbs Down");
+            incrementSpecificPath("Articles/" + articleRef + "/Rating", "DOWN");
             var button = "#" + buttonID + "ThumbsDown";
             var accompanyButton = "#" + buttonID + "ThumbsUp";
             disableButton(button);
@@ -473,7 +477,7 @@
                 articleRef = compArticleRef;
             }
             console.log("THE ARTICLE REF ====== " + articleRef);
-            incrementSpecificPath("Articles/" + articleRef + "/Rating", "Thumbs Up");
+            incrementSpecificPath("Articles/" + articleRef + "/Rating", "UP");
             var button = "#" + buttonID + "ThumbsUp";
             var accompanyButton = "#" + buttonID + "ThumbsDown";
             disableButton(button);
