@@ -30,7 +30,7 @@ class UpdateFirebase():
 	def _fillKeyBois(self, articles):
 		for comparison in articles:
 			for keyBoi in comparison.getMatchingKeywords():
-				if not keyBoi in self.keyBois: self.keyBois.append(keyBoi)
+				if keyBoi not in self.keyBois: self.keyBois.append(keyBoi)
 
 	def _makeJSON(self, articles):
 	
