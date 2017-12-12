@@ -1,0 +1,108 @@
+{"KeyBois": ["China", "Trump", "North Kore", "Robert Mueller", "Michael Flyn"],
+
+"Articles" : {
+    "0xfwd2392":{
+        "URL":"http://cnn.com",
+        "Title":"Trump eats Chinese food",
+        "Text":" ",
+        "Author":"John Doe",
+        "Leaning": {"Center" : 0, "Center Left" : 0, "Center Right": 0, "Left" : 0, "Right":0},
+        "Keywords":[
+            "trump",
+            "chinese",
+            "china",
+            "food",
+            "travel",
+            "foreign"
+        ],
+        "Rating":{
+            "UP":0,
+            "DOWN":0
+        },
+        "Comparisons":["comparison_1"]
+    },
+    "23dn92ned":{
+        "URL":"http://huffingtonpost.com",
+        "Title":"Trump disrespects Chinese Leader",
+        "Text":" ",
+        "Author":"John Doe",
+        "Leaning":" ",
+        "Keywords":[
+            "trump",
+            "chinese",
+            "leader",
+            "food",
+            "travel",
+            "foreign"
+        ],
+        "Rating":{
+            "UP":0,
+            "DOWN":0
+        },
+        "Comparisons":["comparison_1"]
+    },
+    "eweld0302":{
+        "URL":"http://fox.com",
+        "Title":"New Tesla Roadster goes 0-60 in 1.9 s",
+        "Text":" ",
+        "Author":"John Doe",
+        "Leaning":" ",
+        "Keywords":[
+            "tesla",
+            "roadster",
+            "fast",
+            "electric",
+            "motors",
+            "new"
+        ],
+        "Rating":{
+            "UP":0,
+            "DOWN":0
+        }
+    },
+    "32o30dm30":{
+        "URL":"http://breitbart.com",
+        "Title":"Tesla unveils it's new semi truck line",
+        "Text":" ",
+        "Author":"John Doe",
+        "Leaning":" ",
+        "Keywords":[
+            "tesla",
+            "semi",
+            "truck",
+            "fast",
+            "tech",
+            "musk"
+        ],
+        "Rating":{
+            "UP":0,
+            "DOWN":0
+        }
+    }
+},
+			
+"Keywords" : {
+    "trump":{
+        "comparison1": "ashyhashhash",
+        "comparison2": "hashyhashhash"
+        
+    },
+    "tesla":{
+    	"comparison1": "comparison_2"
+    }
+},
+
+"Comparisons" : {
+    "hashyhashhash":[
+        "0xfwd2392",
+        "23dn92ned"
+    ],
+    "comparison_2":[
+        "eweld0302",
+        "32o30dm30"
+    ]
+}
+}	   
+					
+					   
+					  
