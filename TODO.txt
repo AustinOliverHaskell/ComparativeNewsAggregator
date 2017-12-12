@@ -1,0 +1,17 @@
+Todo List
+
+article.html
+    -fill in wells
+    -navbar
+    -add buttons for ratings
+    -firebaseify the page and fill in "holes"
+    -add error text(s)
+
+home.html
+    -generate random sized boxes
+    -navbar
+    -links to article.html
+
+CSS
+    -uniform setup for all the pages
+    -has font, navbar, wells, page background

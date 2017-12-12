@@ -1,0 +1,96 @@
+// I chose pallet 03 that I made online, its 
+// a pdf in the colors folder
+$black: rgba(25, 23, 22, 1);
+$white: rgba(255, 255, 255, 1);
+$grey: rgba(96, 91, 86, 1);
+$red: rgba(242, 149, 89, 1);
+$blue: rgba(141, 153, 174, 1);
+
+// To keep the color assignments seperate
+// from the colors themselfs
+$background: $white;
+$text:       $grey;
+$titleText:  $black;
+
+// Font pallete
+$titleFont: 'Vollkorn SC', serif;
+$bodyFont:  'Barlow Semi Condensed', sans-serif;
+
+body 
+{
+	background-color: $background;
+	color: $text;
+	font-family: $bodyFont;
+}
+
+
+#HeaderBar
+{
+
+}
+
+.title
+{
+	color: $titleText;
+	font-family: $titleFont;
+
+}
+
+.article
+{
+
+}
+
+/* navbar */
+.navbar-default {
+    background-color: $black;
+}
+/* Title */
+.navbar-default .navbar-brand {
+    color: $white;
+    background-color: $black;
+}
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+    color: $white;
+}
+/* Link */
+.navbar-default .navbar-nav > li > a {
+    color: $white;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+    color: $white;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+    color: $white;
+    background-color: $grey;
+}
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+    color: $white;
+    background-color: $grey;
+}
+/* Mobile version */
+.navbar-default .navbar-toggle {
+    border-color: #DDD;
+}
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+    background-color: #DDD;
+}
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #CCC;
+}
+@media (max-width: 767px) {
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+        color: #777;
+    }
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+          color: #333;
+    }
+}
