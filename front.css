@@ -1,7 +1,15 @@
-body, html, .container-fluid {
+body, html {
   height: 100%;
   margin: 0px;
   padding: 0px; }
+
+.container-fluid {
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  width: 80%;
+  margin-left: 10%;
+  float: left; }
 
 body {
   background-color: white;
@@ -16,18 +24,34 @@ body {
   margin-bottom: 2px;
   border-left: 3px;
   border-color: white;
-  height: 200px;
+  height: 100px;
   font-family: "Vollkorn SC", serif;
-  font-size: 26px;
-  padding-top: 40px; }
+  font-size: 16px;
+  padding-top: 40px;
+  padding-bottom: 40px; }
 
 #tiles {
   height: 100%;
   background-color: white; }
 
 .row {
-  width: 100%;
+  width: 80%;
   margin: 0px;
   padding: 0px; }
+
+#header {
+  font-family: "Vollkorn SC", serif;
+  height: 5%;
+  margin-left: 10%;
+  margin-bottom: 14px;
+  margin-top: 14px; }
+
+#logo {
+  height: 100%;
+  float: left; }
+
+#extra {
+  margin-left: 48px;
+  font-size: 24px; }
 
 /*# sourceMappingURL=front.css.map */

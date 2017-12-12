@@ -79,7 +79,6 @@ function oCreateTiles()
 							selectCookie($(this).text());
 						});
 
-						if (colorScheme === 2)
 						{
 							$("#"+id+"").css("color", colors[3]);
 						}
@@ -98,7 +97,6 @@ function oCreateTiles()
 					selectCookie($(this).text());
 				});
 
-				if (colorScheme === 2)
 				{
 					$("#"+id+"").css("color", colors[3]);
 				}

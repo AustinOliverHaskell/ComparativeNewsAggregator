@@ -8,10 +8,19 @@ $blue: rgba(141, 153, 174, 1);
 $titleFont: 'Vollkorn SC', serif;
 $bodyFont:  'Barlow Semi Condensed', sans-serif;
 
-body, html, .container-fluid {
+body, html {
      height: 100%;
      margin: 0px;
      padding: 0px;
+}
+
+.container-fluid {
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+	width: 80%;
+	margin-left: 10%;
+	float: left;
 }
 
 
@@ -29,10 +38,11 @@ body {
 	margin-bottom: 2px;
 	border-left: 3px;
 	border-color: $white;
-	height: 200px;
-	font-family: $titleFont;
-	font-size: 26px;
+	height: 100px;
+	font-family: $titleFont;	
+	font-size: 16px;
 	padding-top: 40px;
+	padding-bottom: 40px;
 }
 
 #tiles {
@@ -41,8 +51,26 @@ body {
 }
 
 .row {
-	width: 100%;
+	width: 80%;
 	margin: 0px;
 	padding: 0px;
 }
 
+#header {
+	font-family: $titleFont;
+	height: 5%;
+	margin-left: 10%;
+	margin-bottom: 14px;
+	margin-top: 14px;
+}
+
+#logo {
+	height: 100%;
+	float: left;
+}
+
+#extra {
+	margin-left: 48px;
+	font-size: 24px;
+
+}
