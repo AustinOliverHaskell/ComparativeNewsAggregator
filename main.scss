@@ -1,11 +1,9 @@
-// I chose pallet 03 that I made online, its 
-// a pdf in the colors folder
 $black: rgba(25, 23, 22, 1);
 $white: rgba(255, 255, 255, 1);
 $grey: rgba(96, 91, 86, 1);
+$lightgrey: rgba(196, 191, 186, 1);
 $red: rgba(242, 149, 89, 1);
 $blue: rgba(141, 153, 174, 1);
-
 // To keep the color assignments seperate
 // from the colors themselfs
 $background: $white;
@@ -23,74 +21,150 @@ body
 	font-family: $bodyFont;
 }
 
+body, html {
+     height: 100%;
+     margin: 0px;
+     padding: 0px;
+}
 
-#HeaderBar
-{
+.row {
+    width: 100%;
+}
 
+.container-fluid {
+    margin: 0px;
+    padding: 0px;
+    width: 80%;
+    margin-left: 10%;
+    float: left;
 }
 
 .title
 {
 	color: $titleText;
 	font-family: $titleFont;
-
+    font-size: 24px;
 }
 
-.article
-{
-
+#header {
+    font-family: $titleFont;
+    height: 50px;
+    margin-left: 45%;
+    margin-top: 14px;
+    width: 100%;
 }
 
-/* navbar */
-.navbar-default {
-    background-color: $black;
+#extra {
+    font-size: 24px;
+    padding-top: 30px;
+    float: left;
 }
-/* Title */
-.navbar-default .navbar-brand {
+
+#logo {
+    height: 80px;
+    width: auto;
+    margin-right: 24px;
+    float: left;
+}
+
+#zoomMain {
+    padding-top: 30px;
+    float: left;
+    margin-left: 25%;
+}
+
+.smol-btn {
+    padding: 0px;
+    font-size: 9px;
+    border-radius: 0px;
+    width: 24px;
+    height: 24px;
+}
+
+.btn {
+    padding: 14px 24px;
+    border: 0 none;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+ 
+.btn:focus, .btn:active:focus, .btn.active:focus {
+    outline: 0 none;
+}
+ 
+.btn-primary {
+    background: $red;
     color: $white;
-    background-color: $black;
 }
-.navbar-default .navbar-brand:hover,
-.navbar-default .navbar-brand:focus {
-    color: $white;
+ 
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+    background: $grey;
 }
-/* Link */
-.navbar-default .navbar-nav > li > a {
-    color: $white;
+ 
+.btn-primary:active, .btn-primary.active {
+    
+    box-shadow: none;
 }
-.navbar-default .navbar-nav > li > a:hover,
-.navbar-default .navbar-nav > li > a:focus {
-    color: $white;
+
+.btn-sharp {
+  border-radius:0;
+  font-family: $titleFont;
+  color: $white;
 }
-.navbar-default .navbar-nav > .active > a,
-.navbar-default .navbar-nav > .active > a:hover,
-.navbar-default .navbar-nav > .active > a:focus {
-    color: $white;
-    background-color: $grey;
+
+
+.up-vote {
+    background: $blue;
 }
-.navbar-default .navbar-nav > .open > a,
-.navbar-default .navbar-nav > .open > a:hover,
-.navbar-default .navbar-nav > .open > a:focus {
-    color: $white;
-    background-color: $grey;
+
+.down-vote {
+    background: $red;
 }
-/* Mobile version */
-.navbar-default .navbar-toggle {
-    border-color: #DDD;
+
+.submit {
+    background: $black;
 }
-.navbar-default .navbar-toggle:hover,
-.navbar-default .navbar-toggle:focus {
-    background-color: #DDD;
+/* The slider itself */
+.slider {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 100%; /* Full-width */
+    height: 25px; /* Specified height */
+    background: $lightgrey; /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
 }
-.navbar-default .navbar-toggle .icon-bar {
-    background-color: #CCC;
+
+/* Mouse-over effects */
+.slider:hover {
+    opacity: 1; /* Fully shown on mouse-over */
 }
-@media (max-width: 767px) {
-    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
-        color: #777;
-    }
-    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
-    .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
-          color: #333;
-    }
+
+/* The slider handle (use webkit (Chrome, Opera, Safari, Edge) and moz (Firefox) to override default look) */ 
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: $black; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+}
+
+.slider::-moz-range-thumb {
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: $black; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+}
+
+
+
+.well {
+    background: $white;
+    border-radius: 0px;
+    font-family: $bodyFont;
+    padding: 5px;
 }

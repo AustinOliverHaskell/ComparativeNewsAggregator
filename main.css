@@ -3,60 +3,142 @@ body {
   color: #605b56;
   font-family: "Barlow Semi Condensed", sans-serif; }
 
+body, html {
+  height: 100%;
+  margin: 0px;
+  padding: 0px; }
+
+.row {
+  width: 100%; }
+
+.container-fluid {
+  margin: 0px;
+  padding: 0px;
+  width: 80%;
+  margin-left: 10%;
+  float: left; }
+
 .title {
   color: #191716;
-  font-family: "Vollkorn SC", serif; }
+  font-family: "Vollkorn SC", serif;
+  font-size: 24px; }
 
-/* navbar */
-.navbar-default {
-  background-color: #191716; }
+#header {
+  font-family: "Vollkorn SC", serif;
+  height: 50px;
+  margin-left: 45%;
+  margin-top: 14px;
+  width: 100%; }
 
-/* Title */
-.navbar-default .navbar-brand {
-  color: white;
-  background-color: #191716; }
+#extra {
+  font-size: 24px;
+  padding-top: 30px;
+  float: left; }
 
-.navbar-default .navbar-brand:hover,
-.navbar-default .navbar-brand:focus {
+#logo {
+  height: 80px;
+  width: auto;
+  margin-right: 24px;
+  float: left; }
+
+#zoomMain {
+  padding-top: 30px;
+  float: left;
+  margin-left: 25%; }
+
+.smol-btn {
+  padding: 0px;
+  font-size: 9px;
+  border-radius: 0px;
+  width: 24px;
+  height: 24px; }
+
+.btn {
+  padding: 14px 24px;
+  border: 0 none;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase; }
+
+.btn:focus, .btn:active:focus, .btn.active:focus {
+  outline: 0 none; }
+
+.btn-primary {
+  background: #f29559;
   color: white; }
 
-/* Link */
-.navbar-default .navbar-nav > li > a {
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+  background: #605b56; }
+
+.btn-primary:active, .btn-primary.active {
+  box-shadow: none; }
+
+.btn-sharp {
+  border-radius: 0;
+  font-family: "Vollkorn SC", serif;
   color: white; }
 
-.navbar-default .navbar-nav > li > a:hover,
-.navbar-default .navbar-nav > li > a:focus {
-  color: white; }
+.up-vote {
+  background: #8d99ae; }
 
-.navbar-default .navbar-nav > .active > a,
-.navbar-default .navbar-nav > .active > a:hover,
-.navbar-default .navbar-nav > .active > a:focus {
-  color: white;
-  background-color: #605b56; }
+.down-vote {
+  background: #f29559; }
 
-.navbar-default .navbar-nav > .open > a,
-.navbar-default .navbar-nav > .open > a:hover,
-.navbar-default .navbar-nav > .open > a:focus {
-  color: white;
-  background-color: #605b56; }
+.submit {
+  background: #191716; }
 
-/* Mobile version */
-.navbar-default .navbar-toggle {
-  border-color: #DDD; }
+/* The slider itself */
+.slider {
+  -webkit-appearance: none;
+  /* Override default CSS styles */
+  appearance: none;
+  width: 100%;
+  /* Full-width */
+  height: 25px;
+  /* Specified height */
+  background: #c4bfba;
+  /* Grey background */
+  outline: none;
+  /* Remove outline */
+  opacity: 0.7;
+  /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s;
+  /* 0.2 seconds transition on hover */
+  transition: opacity .2s; }
 
-.navbar-default .navbar-toggle:hover,
-.navbar-default .navbar-toggle:focus {
-  background-color: #DDD; }
+/* Mouse-over effects */
+.slider:hover {
+  opacity: 1;
+  /* Fully shown on mouse-over */ }
 
-.navbar-default .navbar-toggle .icon-bar {
-  background-color: #CCC; }
+/* The slider handle (use webkit (Chrome, Opera, Safari, Edge) and moz (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  /* Override default look */
+  appearance: none;
+  width: 25px;
+  /* Set a specific slider handle width */
+  height: 25px;
+  /* Slider handle height */
+  background: #191716;
+  /* Green background */
+  cursor: pointer;
+  /* Cursor on hover */ }
 
-@media (max-width: 767px) {
-  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
-    color: #777; }
+.slider::-moz-range-thumb {
+  width: 25px;
+  /* Set a specific slider handle width */
+  height: 25px;
+  /* Slider handle height */
+  background: #191716;
+  /* Green background */
+  cursor: pointer;
+  /* Cursor on hover */ }
 
-  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
-  .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
-    color: #333; } }
+.well {
+  background: white;
+  border-radius: 0px;
+  font-family: "Barlow Semi Condensed", sans-serif;
+  padding: 5px; }
 
 /*# sourceMappingURL=main.css.map */

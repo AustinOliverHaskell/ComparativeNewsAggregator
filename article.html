@@ -52,27 +52,25 @@
 </head>
 
 <body>
-
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">Newsboy</a>
+        <div id="header">
+            <img src="img/paper.jpg" id="logo" />
+            <div id="extra" >News Boi</div>  
+            <div id="zoomMain" >
+                    Text Size
+                    <button id="zoomMainOut" class="glyphicon glyphicon-minus btn btn-sharp smol-btn">
+                    <button id="zoomMainIn" class="glyphicon glyphicon-plus btn btn-sharp smol-btn">
             </div>
-            <ul class="nav navbar-nav">
-                <li><a href="home.html">Home</a></li>
-            </ul>
         </div>
-    </nav>
+        <br>
+        <hr width="60%">
 
-    <div class="container">
+
+    <div class="container-fluid">
+    
         <div class="row">
-            <div id="zoomMain" class="col-xs-12">
-                Text Size
-                <button id="zoomMainOut" class="glyphicon glyphicon-minus" height="75" width="75">
-                <button id="zoomMainIn" class="glyphicon glyphicon-plus" height="75" width="75">
-            </div>
+            
             <div class="col-sm-6">
-                <span id="id_mainArticleTitle" class="articleTitles"></span>
+                <span id="id_mainArticleTitle" class="title"></span>
                     <br> 
                     by <span id="id_mainArticleAuthor"></span>
                     <br>
@@ -82,11 +80,11 @@
                     <br>
                     <span id="id_mainArticleText"></span>
                 </div>
-                    <button class="btn btn-info btn-md" id="id_mainArticleThumbsUp">
+                    <button class="btn btn-sharp btn-md up-vote" id="id_mainArticleThumbsUp">
                         <span class="glyphicon glyphicon-thumbs-up"></span>
                     </button>
                 <span id="id_mainArticleRatingUp"></span>
-                <button class="btn btn-danger btn-md" id="id_mainArticleThumbsDown">
+                <button class="btn btn-sharp btn-md down-vote" id="id_mainArticleThumbsDown">
                             <span class="glyphicon glyphicon-thumbs-down"></span>
                     </button>
                 <span id="id_mainArticleRatingDown"></span>
@@ -99,7 +97,7 @@
                         <br>
                         <span id="id_mainLeaningOutput">Center</span>
                         <br>
-                        <button type="button" class="btn btn-primary" id="id_mainArticleLeaningButton">Submit Leaning</button>
+                        <button type="button" class="btn btn-sharp submit" id="id_mainArticleLeaningButton">Submit Leaning</button>
                     </div>
                 </div>
                 <!--
@@ -115,7 +113,7 @@
             </div>
 
             <div class="col-sm-6">
-                <span id="id_compArticleTitle" class="articleTitles"></span>
+                <span id="id_compArticleTitle" class="title"></span>
                 <br> by <span id="id_compArticleAuthor"></span>
                 <br>
                 <span id="id_compArticleURL"></span>
@@ -124,11 +122,11 @@
                     <br>
                     <span id="id_compArticleText"></span>
                 </div>
-                <button class="btn btn-info btn-md" id="id_compArticleThumbsUp">
+                <button class="btn btn-sharp btn-md up-vote" id="id_compArticleThumbsUp">
                         <span class="glyphicon glyphicon-thumbs-up"></span>
                     </button>
                 <span id="id_compArticleRatingUp"></span>
-                <button class="btn btn-danger btn-md" id="id_compArticleThumbsDown">
+                <button class="btn btn-sharp btn-md down-vote" id="id_compArticleThumbsDown">
                             <span class="glyphicon glyphicon-thumbs-down"></span>
                     </button>
                 <span id="id_compArticleRatingDown"></span>
@@ -141,7 +139,7 @@
                         <br>
                         <span id="id_compLeaningOutput">Center</span>
                         <br>
-                        <button type="button" class="btn btn-primary" id="id_compArticleLeaningButton">Submit Leaning</button>
+                        <button type="button" class="btn btn-sharp submit" id="id_compArticleLeaningButton">Submit Leaning</button>
                     </div>
                 </div>
                 <!--
