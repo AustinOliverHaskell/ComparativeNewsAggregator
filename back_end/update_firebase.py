@@ -9,7 +9,7 @@ class UpdateFirebase():
 		self.entries = []
 		self.keyBois = []
 		
-		self.rawComparisons = articles[0:100]
+		self.rawComparisons = articles
 		self.articleHashes = []
 		self.comparisonHashes = []
 
