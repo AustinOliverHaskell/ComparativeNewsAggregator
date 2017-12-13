@@ -40,7 +40,7 @@ class WebScraper():
 		# Find all articles on each website and add URLs to list
 		for website in self.websites:
 			
-			paper = newspaper.build(website)
+			paper = newspaper.build(website, memoize_articles=False)
 			
 			for article in paper.articles:
 			
